@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Formatter's Lab</title>
+  </head>
+  <body>
+
+    <h1>🔬 The Formatter's Lab</h1>
+    <p>Welcome to the lab where we style text like scientists style experiments — with precision and purpose! Each section shows a different formatting tag in action.</p>
+
+    <h2>Bold vs Strong</h2>
+    <p>The <b>cheetah</b> is the fastest land animal on Earth.</p>
+    <p>You should <strong>always wear a helmet</strong> when riding a bicycle.</p>
+
+    <h2>Italic vs Emphasis</h2>
+    <p>The scientific name for a lion is <i>Panthera leo</i>.</p>
+    <p>This is <em>really</em> important — never touch an unknown chemical without protective gloves.</p>
+
+    <h2>Highlight and Small</h2>
+    <p>Remember: <mark>water boils at 100°C</mark> at sea level.</p>
+    <p>The Sun is about 150 million km away from Earth. <small>(approximately)</small></p>
+
+    <h2>Deleted Text</h2>
+    <p>Pluto is a <del>planet</del> dwarf planet.</p>
+    <p>The Great Wall of China is <del>visible from space</del>. This is actually a myth!</p>
+
+    <h2>Superscript and Subscript</h2>
+    <p>The area of a circle is πr<sup>2</sup>.</p>
+    <p>Water is made of H<sub>2</sub>O — two hydrogen atoms and one oxygen atom.</p>
+    <p>Einstein's most famous equation is E = mc<sup>2</sup>.</p>
+
+  </body>
+</html>
