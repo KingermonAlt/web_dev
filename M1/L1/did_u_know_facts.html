@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Did You Know?</title>
+  </head>
+  <body>
+
+    <h1>🌍 Did You Know?</h1>
+    <p>Welcome to the most amazing facts page on the internet. Get ready to have your mind blown!</p>
+
+    <h2>🐙 Fact 1: The Amazing Octopus</h2>
+    <p>Octopuses have three hearts, nine brains, and blue blood. Two hearts pump blood to the gills, while the third pumps it to the rest of the body.</p>
+
+    <h3>How smart are octopuses?</h3>
+    <p>Octopuses can open jars, solve puzzles, and even recognise human faces. Scientists consider them one of the most intelligent invertebrates on Earth.</p>
+
+    <h2>⚡ Fact 2: Lightning Strikes</h2>
+    <p>Lightning strikes the Earth about 100 times every single second. That is roughly 8 million lightning strikes per day!</p>
+
+    <h3>How hot is lightning?</h3>
+    <p>A single bolt of lightning is around 30,000 Kelvin — five times hotter than the surface of the Sun.</p>
+
+    <h4>Can lightning strike twice?</h4>
+    <p>Yes! Lightning absolutely can and does strike the same place more than once, especially tall structures like towers and trees.</p>
+
+    <h2>🌊 Fact 3: The Deep Ocean</h2>
+    <p>More than 80% of the world's oceans remain unexplored. Scientists believe there are millions of species living in the deep sea that we have never discovered.</p>
+
+    <h3>How deep does the ocean go?</h3>
+    <p>The deepest point on Earth is the Mariana Trench, which reaches a depth of about 11 kilometres — deep enough to fit Mount Everest inside with room to spare!</p>
+
+    <h5>Fun comparison</h5>
+    <p>If you placed Mount Everest at the bottom of the Mariana Trench, its peak would still be more than 2 kilometres underwater.</p>
+
+    <h6>Source</h6>
+    <p>Facts sourced from National Geographic and NOAA Ocean Exploration.</p>
+
+  </body>
+</html>
