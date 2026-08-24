@@ -1,45 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Delightful Web Page</title>
+    <style>
+        :root { --accent: #ff4d8d; --ink: #292545; }
+        * { box-sizing: border-box; }
+        body { margin: 0; min-height: 100vh; font-family: system-ui, sans-serif; color: var(--ink); background: linear-gradient(135deg,#ffe29f,#ffa99f,#c7a7ff); background-size: 300% 300%; animation: sky 14s ease infinite; }
+        main { width: min(760px,92%); margin: 40px auto; padding: 30px; border-radius: 28px; background: #ffffffd9; box-shadow: 0 20px 60px #6b3c6a55; animation: rise .8s ease both; }
+        h1 { margin-top: 0; color: var(--accent); font-size: clamp(2rem,6vw,3.5rem); animation: pulse 3s ease-in-out infinite; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(210px,1fr)); gap: 16px; }
+        label, fieldset { display: flex; flex-direction: column; gap: 7px; font-weight: 650; }
+        input, button { border: 2px solid #eadcf4; border-radius: 12px; padding: 11px; font: inherit; background: white; transition: .25s; }
+        input:focus { outline: none; border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 5px 15px #ff4d8d33; }
+        fieldset { border: 0; padding: 0; margin: 0; } fieldset label { flex-direction: row; font-weight: 500; }
+        .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
+        button { cursor: pointer; border: 0; color: white; background: linear-gradient(90deg,var(--accent),#7657e8); font-weight: 700; }
+        button:hover { transform: scale(1.05) rotate(-1deg); filter: brightness(1.1); }
+        #status { min-height: 1.5em; margin-top: 18px; color: #7657e8; font-weight: 700; }
+        @keyframes sky { 50% { background-position: 100% 50%; } } @keyframes rise { from { opacity:0; transform:translateY(35px); } } @keyframes pulse { 50% { transform: scale(1.03); } }
+        .shake { animation: shake .45s; } @keyframes shake { 25%{transform:translateX(-8px)}75%{transform:translateX(8px)} }
+    </style>
+</head>
 <body>
-    <index type="text/html">
-        <title>My Delightful Web Page</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">    
-
-        <input type="file" id="fileInput" accept=".txt">
-        
-        <input type="button" value="Upload" onclick="uploadFile()">
-
-        <input type=checkbox id="checkbox1"> Option 1
-        <input type="checkbox"id="checkbox2">Option 2
-
-        <input type="color" id="colorPicker">
-
-        <input type="date" id="datePicker">
-
-
-        <input type="email" id="emailInput" placeholder="Enter your email">
-
-        <input type="password" id="passwordInput" placeholder="Enter your password">
-
-        <input type="month" id="monthPicker">
-
-        <input type="number" id="numberInput" placeholder="Enter a number">
-
-        <input type="url" id="urlInput" placeholder="Enter a URL"> 
-
-        <input type="radio" name="radioGroup" id="radio1"> Option A
-        <input type="radio" name="radioGroup" id="radio2"> Option B
-
-    
-       <input type="reset"
-       
-       <input type="search"
-
-       <input type="submit"
-
-       <input type="tel "
-
-       <input type="time"
-
-       <input type="week"
+<main id="card">
+    <h1>✨ Delightful Web Page</h1>
+    <p>Explore the colorful controls, then save your preferences locally.</p>
+    <form id="delightForm">
+        <div class="grid">
+            <label>Upload a text file <input type="file" id="fileInput" accept=".txt"></label>
+            <label>Email <input type="email" id="emailInput" placeholder="you@example.com" required></label>
+            <label>Password <input type="password" id="passwordInput" placeholder="Your password"></label>
+            <label>Favorite color <input type="color" id="colorPicker" value="#ff4d8d"></label>
+            <label>Date <input type="date" id="datePicker"></label>
+            <label>Month <input type="month" id="monthPicker"></label>
+            <label>Number <input type="number" id="numberInput" placeholder="42"></label>
+            <label>Website <input type="url" id="urlInput" placeholder="https://example.com"></label>
+            <label>Phone <input type="tel" id="telInput" placeholder="555-0100"></label>
+            <label>Time <input type="time" id="timeInput"></label>
+            <label>Week <input type="week" id="weekInput"></label>
+            <fieldset><legend>Options</legend><label><input type="checkbox" id="checkbox1"> Option 1</label><label><input type="checkbox" id="checkbox2"> Option 2</label></fieldset>
+            <fieldset><legend>Style</legend><label><input type="radio" name="radioGroup" checked> Option A</label><label><input type="radio" name="radioGroup"> Option B</label></fieldset>
+        </div>
+        <div class="actions"><button type="submit">Save preferences</button><button type="button" id="resetButton">Reset</button></div>
+    </form>
+    <p id="status" aria-live="polite"></p>
+</main>
+<script>
+    const form = document.getElementById('delightForm'), status = document.getElementById('status');
+    const color = document.getElementById('colorPicker');
+    color.addEventListener('input', e => document.documentElement.style.setProperty('--accent', e.target.value));
+    document.getElementById('fileInput').addEventListener('change', e => { if (e.target.files[0]) status.textContent = `Ready to upload: ${e.target.files[0].name}`; });
+    form.addEventListener('submit', e => { e.preventDefault(); if (!form.reportValidity()) return; localStorage.setItem('delightPreferences', JSON.stringify(Object.fromEntries(new FormData(form)))); status.textContent = '✓ Preferences saved successfully!'; document.getElementById('card').classList.add('shake'); setTimeout(() => document.getElementById('card').classList.remove('shake'), 500); });
+    document.getElementById('resetButton').addEventListener('click', () => { form.reset(); localStorage.removeItem('delightPreferences'); document.documentElement.style.setProperty('--accent','#ff4d8d'); status.textContent = 'Form reset.'; });
+</script>
+</body>
+</html>
 
 

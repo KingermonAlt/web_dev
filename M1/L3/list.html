@@ -1,19 +1,69 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Olympic Records</title>
+  <style>
+    :root { color-scheme: dark; font-family: Inter, system-ui, sans-serif; }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; color: #f8fafc; background: #0f172a; }
+    main { width: min(980px, 92%); margin: auto; padding: 4rem 0; }
+    header { text-align: center; margin-bottom: 2rem; }
+    h1 { margin: 0; font-size: clamp(2rem, 5vw, 4rem); letter-spacing: -.04em; }
+    header p { color: #94a3b8; font-size: 1.05rem; }
+    .players { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; padding: 0; list-style: none; }
+    .player { --accent: #38bdf8; position: relative; overflow: hidden; min-height: 180px; padding: 1.4rem; border: 1px solid color-mix(in srgb, var(--accent), transparent 55%); border-radius: 1rem; background: linear-gradient(145deg, color-mix(in srgb, var(--accent), #0f172a 82%), #1e293b); transition: transform .2s, box-shadow .2s; }
+    .player:hover, .player:focus-within { transform: translateY(-5px); box-shadow: 0 14px 30px color-mix(in srgb, var(--accent), transparent 70%); }
+    .player:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+    .player::after { content: attr(data-symbol); position: absolute; right: .8rem; bottom: -.35rem; font-size: 5rem; opacity: .12; }
+    .player h2 { margin: 0 0 .6rem; font-size: 1.25rem; }
+    .player h2 button { position: relative; z-index: 1; padding: 0; border: 0; color: inherit; background: none; font: inherit; text-align: left; cursor: pointer; }
+    .player h2 button::after { content: '  +'; color: var(--accent); }
+    .player p { margin: 0; color: #cbd5e1; line-height: 1.5; }
+    .history { display: grid; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows .35s ease, opacity .25s ease, margin-top .35s ease; }
+    .history > div { overflow: hidden; }
+    .player.selected .history { grid-template-rows: 1fr; opacity: 1; margin-top: 1rem; }
+    .player.selected h2 button::after { content: '  −'; }
+    .history p { padding-top: .8rem; border-top: 1px solid color-mix(in srgb, var(--accent), transparent 55%); font-size: .92rem; }
+    .kasparov { --accent: #ef4444; } .anand { --accent: #f59e0b; }
+    .carlsen { --accent: #22c55e; } .nakamura { --accent: #a855f7; }
+    .firouzja { --accent: #06b6d4; } .morphy { --accent: #eab308; }
+    footer { margin-top: 2rem; text-align: center; color: #64748b; font-size: .9rem; }
+    @media (prefers-reduced-motion: reduce) { .player { transition: none; } }
+  </style>
 </head>
 <body>
-    <h1>Chess Players - World Famous</h1>
-    <ul>
-        <li>Garry Kasparov</li>
-        <li>Viswanathan Anand</li>
-        <li> Magnus Carlsen</li>
-        <li>Hikaru Nakamura</li>
-        <li>Alireza Firouzja</li>
-        <li>Paul Morphy</li>
+  <main>
+    <header>
+      <h1>Chess Players</h1>
+      <p>A constellation of brilliant minds from chess history.</p>
+    </header>
+    <ul class="players" aria-label="World-famous chess players">
+      <li class="player kasparov" data-symbol="♜"><h2><button type="button" aria-expanded="false">Garry Kasparov</button></h2><p>The fierce tactician — bold, precise, and relentlessly attacking.</p><div class="history"><div><p>Born in 1963, Kasparov became the youngest world champion in 1985. He held the title until 2000 and is remembered for his deep preparation, dynamic attacks, and historic matches with IBM's Deep Blue.</p></div></div></li>
+      <li class="player anand" data-symbol="♞"><h2><button type="button" aria-expanded="false">Viswanathan Anand</button></h2><p>The lightning mind — elegant calculation with effortless speed.</p><div class="history"><div><p>India's first world champion, Anand won the title in 2007 and successfully defended it in several formats. His universal style and remarkable speed earned him the nickname “The Lightning Kid.”</p></div></div></li>
+      <li class="player carlsen" data-symbol="♛"><h2><button type="button" aria-expanded="false">Magnus Carlsen</button></h2><p>The endgame magician — patient pressure and extraordinary resilience.</p><div class="history"><div><p>Carlsen became world champion in 2013 and dominated the rankings for over a decade. He is celebrated for turning tiny advantages into wins, especially in seemingly equal endgames.</p></div></div></li>
+      <li class="player nakamura" data-symbol="♟"><h2><button type="button" aria-expanded="false">Hikaru Nakamura</button></h2><p>The digital dynamo — fearless instincts and electric creativity.</p><div class="history"><div><p>A five-time U.S. champion, Nakamura is one of the strongest speed-chess players ever. He helped bring elite chess to a new audience through online competition and streaming.</p></div></div></li>
+      <li class="player firouzja" data-symbol="♗"><h2><button type="button" aria-expanded="false">Alireza Firouzja</button></h2><p>The rising star — imaginative attacks and modern ambition.</p><div class="history"><div><p>Born in 2003, Firouzja became a grandmaster as a teenager and quickly joined the world's elite. His creative attacking play has made him one of the leading talents of his generation.</p></div></div></li>
+      <li class="player morphy" data-symbol="♔"><h2><button type="button" aria-expanded="false">Paul Morphy</button></h2><p>The romantic pioneer — graceful development and timeless brilliance.</p><div class="history"><div><p>Morphy was a 19th-century American chess prodigy whose 1858 European tour made him famous. His games remain classic lessons in rapid development, open lines, and purposeful sacrifice.</p></div></div></li>
     </ul>
+    <footer>Every position tells a story.</footer>
+  </main>
+  <script>
+    document.querySelectorAll('.player').forEach(card => {
+      card.tabIndex = 0;
+      const button = card.querySelector('button');
+      const toggle = () => {
+        const selected = card.classList.toggle('selected');
+        button.setAttribute('aria-expanded', selected);
+      };
+      button.addEventListener('click', toggle);
+      card.addEventListener('keydown', event => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          if (event.target === card) { event.preventDefault(); toggle(); }
+        }
+      });
+    });
+  </script>
 </body>
 </html>

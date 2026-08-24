@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Healthy Bites shares practical food and nutrition advice for students.">
+  <title>Food and Nutrition Blog</title>
+  <style>
+    :root {
+      --green: #176b4d;
+      --dark-green: #0d3b2e;
+      --mint: #eaf7ef;
+      --cream: #fffaf1;
+      --gold: #e4a11b;
+      --ink: #20302a;
+      --muted: #5b6b64;
+      --soft-border: #dfeee5;
+      --shadow: 0 14px 36px rgba(13, 59, 46, 0.12);
+      --shadow-soft: 0 8px 18px rgba(13, 59, 46, 0.08);
+      --gradient: linear-gradient(135deg, #176b4d, #43a86f 55%, #e4a11b);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top, rgba(132, 190, 160, 0.18), transparent 40%),
+        var(--cream);
+      font: 1rem/1.7 system-ui, -apple-system, "Segoe UI", sans-serif;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.22;
+      background-image: radial-gradient(rgba(23, 107, 77, 0.18) 1px, transparent 1px);
+      background-size: 22px 22px;
+      mask-image: linear-gradient(to bottom, black, transparent 75%);
+      z-index: -1;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: var(--green); font-weight: 700; }
+    a:hover, a:focus-visible { color: var(--dark-green); }
+
+    header {
+      position: relative;
+      padding: 5rem 1.25rem 4rem;
+      color: white;
+      text-align: center;
+      background:
+        linear-gradient(135deg, rgba(13, 59, 46, 0.96), rgba(23, 107, 77, 0.84)),
+        url("https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=1600&auto=format&fit=crop") center/cover;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      width: 28rem;
+      height: 28rem;
+      right: -10rem;
+      bottom: -18rem;
+      border: 2px solid rgba(255,255,255,.2);
+      border-radius: 50%;
+      box-shadow: 0 0 0 2rem rgba(255,255,255,.06), 0 0 0 5rem rgba(255,255,255,.04);
+      animation: float 9s ease-in-out infinite;
+    }
+
+    @keyframes float { 50% { transform: translateY(-18px) rotate(8deg); } }
+    @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+
+    header::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(10,40,32,0.15));
+      pointer-events: none;
+    }
+
+    header > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    h1, h2, h3 { line-height: 1.2; margin-top: 0; }
+    h1 {
+      max-width: 850px;
+      margin: 0 auto 1.5rem;
+      font-size: clamp(2.3rem, 5vw, 4.2rem);
+      letter-spacing: -0.04em;
+      text-shadow: 0 4px 22px rgba(0,0,0,.2);
+    }
+    h2 {
+      color: var(--dark-green);
+      font-size: clamp(1.7rem, 3vw, 2.5rem);
+      margin-bottom: 1.25rem;
+    }
+    h3 {
+      color: var(--green);
+      font-size: clamp(1.2rem, 2vw, 1.6rem);
+      margin-bottom: 0.75rem;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem 0.9rem;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    nav::after {
+      content: "";
+      position: absolute;
+      left: 10%; right: 10%; bottom: -1rem;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.6), transparent);
+    }
+
+    header nav a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-decoration: none;
+      padding: 0.7rem 1rem;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: background-color 0.2s ease, transform 0.2s ease;
+    }
+
+    header nav a:hover,
+    header nav a:focus-visible {
+      background: rgba(255,255,255,0.18);
+      transform: translateY(-1px);
+    }
+
+    .site-search {
+      display: flex;
+      justify-content: center;
+      gap: .5rem;
+      max-width: 620px;
+      margin: 1.75rem auto 0;
+    }
+    .site-search input {
+      flex: 1;
+      min-width: 0;
+      border: 0;
+      border-radius: 999px;
+      padding: .75rem 1rem;
+      color: var(--ink);
+      background: white;
+      font: inherit;
+    }
+    .site-search button {
+      border: 0;
+      border-radius: 999px;
+      padding: .75rem 1.1rem;
+      color: var(--dark-green);
+      background: var(--gold);
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .site-search button:hover { filter: brightness(1.08); }
+    .search-status { margin: .5rem 0 0; font-size: .9rem; }
+
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: 1rem;
+      padding: 0.7rem 1rem;
+      background: white;
+      color: var(--dark-green);
+      border-radius: 0.5rem;
+      box-shadow: var(--shadow-soft);
+      z-index: 10;
+    }
+    .skip-link:focus {
+      left: 1rem;
+      z-index: 20;
+    }
+
+    main {
+      width: min(1250px, calc(100% - 2rem));
+      min-height: calc(100vh - 12rem);
+      margin: 2rem auto 0;
+    }
+
+    /* The content is presented as an animated, full-size page book. */
+    #main-content > section:not(.page-active),
+    #main-content > aside:not(.page-active) { display: none !important; }
+    #main-content > section.page-active,
+    #main-content > aside.page-active {
+      display: grid;
+      animation: page-turn .55s ease both;
+    }
+    #main-content > aside.page-active { display: block; }
+    @keyframes page-turn {
+      from { opacity: 0; transform: perspective(1000px) rotateY(-12deg) translateX(24px); }
+      to { opacity: 1; transform: perspective(1000px) rotateY(0) translateX(0); }
+    }
+    main > section.page-active,
+    main > aside.page-active { transform-origin: left center; backface-visibility: hidden; }
+    main.page-forward > section.page-active,
+    main.page-forward > aside.page-active { animation-name: page-turn-forward; }
+    @keyframes page-turn-forward {
+      from { opacity: 0; transform: perspective(1000px) rotateY(12deg) translateX(-24px); }
+      to { opacity: 1; transform: perspective(1000px) rotateY(0) translateX(0); }
+    }
+
+    .book-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .8rem;
+      margin: 0 auto 1.25rem;
+    }
+    .book-controls button {
+      border: 0;
+      border-radius: 999px;
+      padding: .7rem 1.1rem;
+      color: white;
+      background: var(--green);
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: var(--shadow-soft);
+    }
+    .book-controls button:hover:not(:disabled) { background: var(--dark-green); transform: translateY(-1px); }
+    .book-controls button:disabled { opacity: .45; cursor: not-allowed; }
+    .page-number { min-width: 7rem; color: var(--muted); text-align: center; font-weight: 700; }
+    .maximize-button { background: var(--gold) !important; color: var(--dark-green) !important; }
+    main:fullscreen { width: 100%; min-height: 100vh; padding: 2rem; margin: 0; overflow: auto; background: var(--cream); }
+
+    main > * { animation: rise .7s both; }
+    main > *:nth-child(2) { animation-delay: .08s; }
+    main > *:nth-child(3) { animation-delay: .16s; }
+    main > *:nth-child(4) { animation-delay: .24s; }
+
+    section, aside {
+      margin: 0 0 3rem;
+      scroll-margin-top: 1.5rem;
+    }
+    section > h2, aside > h2 {
+      margin-top: 0;
+      text-align: center;
+    }
+
+    #healthy-plate,
+    #nutrition-tips,
+    .extra-page {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+    #healthy-plate > h2,
+    #nutrition-tips > h2 {
+      grid-column: 1 / -1;
+      margin-bottom: 0.25rem;
+    }
+    .extra-page > h2 {
+      grid-column: 1 / -1;
+      margin-bottom: 0.25rem;
+    }
+
+    article,
+    aside > div,
+    #video,
+    #contact {
+      padding: 1.6rem;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid var(--soft-border);
+      border-radius: 1rem;
+      box-shadow: var(--shadow-soft);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    article::before, #video::before, #contact::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto;
+      height: 4px;
+      background: var(--gradient);
+    }
+
+    article:hover,
+    #video:hover,
+    #contact:hover,
+    aside > div:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    figure {
+      margin: 0 0 1.2rem;
+    }
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 0.8rem;
+      object-fit: cover;
+      box-shadow: 0 8px 20px rgba(23, 107, 77, 0.08);
+    }
+    figcaption {
+      margin-top: 0.7rem;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    p {
+      margin: 0 0 1rem;
+    }
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    aside {
+      padding: 1.5rem;
+      background: linear-gradient(135deg, var(--mint), #f4fbf6);
+      border-radius: 1.2rem;
+      border: 1px solid #d9ecdf;
+    }
+    aside > div {
+      max-width: 760px;
+      margin: auto;
+    }
+
+    #video,
+    #contact {
+      margin-bottom: 1.5rem;
+    }
+
+    iframe {
+      display: block;
+      width: min(100%, 560px);
+      aspect-ratio: 16 / 9;
+      margin: 1rem auto 0;
+      border: 0;
+      border-radius: 0.8rem;
+      box-shadow: 0 10px 24px rgba(13,59,46,.12);
+    }
+
+    .reading-progress {
+      position: fixed;
+      inset: 0 0 auto;
+      height: 5px;
+      width: 0;
+      background: var(--gradient);
+      z-index: 100;
+      transition: width .1s linear;
+    }
+
+    .theme-toggle {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      border: 1px solid rgba(255,255,255,.45);
+      border-radius: 999px;
+      padding: .55rem .8rem;
+      color: white;
+      background: rgba(0,0,0,.18);
+      cursor: pointer;
+      font: inherit;
+    }
+
+    body.dark {
+      --cream: #10251e;
+      --ink: #eefaf1;
+      --muted: #c2d8ca;
+      --soft-border: #285541;
+      background: radial-gradient(circle at top, #1b4a37, #10251e 55%);
+    }
+    body.dark article, body.dark #video, body.dark #contact { background: rgba(17, 48, 37, .96); }
+    body.dark h2 { color: #b9edc9; }
+
+    footer {
+      padding: 2.25rem 1rem 2.75rem;
+      color: white;
+      text-align: center;
+      background: linear-gradient(135deg, var(--dark-green), #123f31);
+    }
+    footer p {
+      margin: 0.4rem 0;
+    }
+    footer a {
+      color: #b9edc9;
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--gold);
+      outline-offset: 3px;
+    }
+
+    @media (max-width: 900px) {
+      #healthy-plate,
+      #nutrition-tips,
+      .extra-page {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 700px) {
+      header { padding: 4rem 1rem 3rem; }
+      main { width: min(100% - 1rem, 1100px); margin: 1.75rem auto 0; }
+      nav { gap: 0.5rem; }
+      header nav a { padding: 0.6rem 0.8rem; }
+      .site-search { flex-direction: column; }
+      article, aside > div, #video, #contact { padding: 1.25rem; }
+      main:fullscreen { padding: 1rem .5rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        transition: none !important;
+        animation: none !important;
+      }
+      main > * { animation: none; }
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div class="reading-progress" aria-hidden="true"></div>
+
+  <header>
+    <button class="theme-toggle" type="button" aria-pressed="false">🌙 Theme</button>
+    <h1>Healthy Bites: Food and Nutrition Blog</h1>
+
+    <nav>
+      <a href="#healthy-plate">Healthy Plate</a> |
+      <a href="#nutrition-tips">Nutrition Tips</a> |
+      <a href="#video">Watch Video</a> |
+      <a href="#contact">Contact</a> |
+      <a href="#meal-planning">Meal Planning</a> |
+      <a href="#breakfast">Breakfast</a> |
+      <a href="#budget-foods">Budget Foods</a> |
+      <a href="#food-safety">Food Safety</a> |
+      <a href="#pet-nutrition">Pet Nutrition</a> |
+      <a href="#dogs">Dogs</a> |
+      <a href="#cats">Cats</a> |
+      <a href="#small-pets">Small Pets</a> |
+      <a href="#pet-care">Pet Care</a> |
+      <a href="#resources">Resources</a>
+    </nav>
+
+    <form class="site-search" role="search">
+      <label class="sr-only" for="site-search-input">Search the website</label>
+      <input id="site-search-input" type="search" placeholder="Search nutrition topics..." autocomplete="off">
+      <button type="submit">Search</button>
+    </form>
+    <p class="search-status" role="status" aria-live="polite"></p>
+  </header>
+
+  <main id="main-content">
+
+    <div class="book-controls" aria-label="Page navigation">
+      <button class="previous-page" type="button" aria-label="Previous page">← Previous</button>
+      <span class="page-number" aria-live="polite">Page 1</span>
+      <button class="next-page" type="button" aria-label="Next page">Next →</button>
+      <button class="maximize-button" type="button">⛶ Maximise</button>
+    </div>
+
+    <section class="page-active" id="healthy-plate">
+      <h2>Building a Healthy Plate</h2>
+
+      <article>
+        <h3>Why a Balanced Meal Matters</h3>
+
+        <figure>
+          <img
+            src="https://images.unsplash.com/photo-1540420773420-3366772f4999?w=300&h=200&fit=crop"
+            alt="A balanced meal plate with fruits, vegetables, grains, and protein"
+            width="300"
+            height="200"
+            loading="lazy"
+            decoding="async"
+          >
+          <figcaption>
+            A balanced plate includes fruits, vegetables, grains, protein, and water.
+          </figcaption>
+        </figure>
+
+        <p>
+          A healthy plate gives our body the energy it needs to study, play, think, and grow.
+          It should include colourful fruits, fresh vegetables, grains, and protein-rich food.
+        </p>
+
+        <p>
+          Learn more about healthy eating here:
+          <a href="https://www.myplate.gov/" target="_blank" rel="noopener noreferrer">
+            MyPlate Nutrition Guide
+          </a>
+        </p>
+      </article>
+
+      <article>
+        <h3>Smart Snack Choices</h3>
+
+        <figure>
+          <img
+            src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=300&h=200&fit=crop"
+            alt="Healthy snacks and fresh food ingredients"
+            width="300"
+            height="200"
+            loading="lazy"
+            decoding="async"
+          >
+          <figcaption>
+            Healthy snacks can include fruits, nuts, yoghurt, or homemade food.
+          </figcaption>
+        </figure>
+
+        <p>
+          Snacks can be healthy when we choose foods that give energy instead of only sugar.
+          Fruits, nuts, sprouts, and yoghurt are better choices than chips and sugary drinks.
+        </p>
+
+        <p>
+          Explore more nutrition facts here:
+          <a href="https://www.who.int/news-room/fact-sheets/detail/healthy-diet" target="_blank" rel="noopener noreferrer">
+            WHO Healthy Diet Guide
+          </a>
+        </p>
+      </article>
+    </section>
+
+    <section id="nutrition-tips">
+      <h2>Nutrition Tips for Students</h2>
+
+      <article>
+        <h3>Drink Enough Water</h3>
+
+        <p>
+          Water helps the body stay active, supports digestion, and keeps the brain focused.
+          Students should carry a water bottle and drink water throughout the day.
+        </p>
+      </article>
+
+      <article>
+        <h3>Eat Colourful Food</h3>
+
+        <p>
+          Different colours in fruits and vegetables give different nutrients. A colourful plate
+          often means a healthier plate.
+        </p>
+
+        <p>
+          Read more about healthy food choices here:
+          <a href="https://www.nutrition.gov/" target="_blank" rel="noopener noreferrer">
+            Nutrition.gov
+          </a>
+        </p>
+      </article>
+    </section>
+
+    <aside>
+      <h2>Quick Nutrition Note</h2>
+
+      <div>
+        <p>
+          Try this simple rule: fill half your plate with fruits and vegetables, one quarter with
+          grains, and one quarter with protein.
+        </p>
+
+        <p>
+          Share your healthy recipe here:
+          <a href="mailto:nutritionblog@example.com?subject=Healthy%20Recipe%20Submission">
+            Recipe Submission Form
+          </a>
+        </p>
+      </div>
+    </aside>
+
+    <section id="video">
+      <h2>Watch and Learn About Nutrition</h2>
+
+      <p>
+        Watch this video to understand how food choices can support a healthy lifestyle.
+      </p>
+
+      <iframe
+        width="560"
+        height="315"
+        src="https://www.youtube.com/embed/xyQY8a-ng6g"
+        title="Nutrition Video"
+        loading="lazy"
+        style="border: 0;"
+        allowfullscreen>
+      </iframe>
+    </section>
+
+    <section id="contact">
+      <h2>Contact the Nutrition Blog Team</h2>
+
+      <p>
+        Have a healthy recipe or food tip to share? Send it to us.
+      </p>
+
+      <p>
+        Email:
+        <a href="mailto:nutritionblog@example.com">
+          nutritionblog@example.com
+        </a>
+      </p>
+    </section>
+
+    <section class="extra-page" id="meal-planning">
+      <h2>Meal Planning Page</h2>
+      <article><h3>Plan Ahead</h3><p>Choose a few simple meals before shopping. Planning helps students save time, reduce waste, and make balanced choices during busy weeks.</p></article>
+      <article><h3>A Flexible Formula</h3><p>Combine a whole grain, a protein, vegetables or fruit, and water. Prepare extra portions so tomorrow’s lunch is ready.</p></article>
+    </section>
+
+    <section class="extra-page" id="breakfast">
+      <h2>Breakfast Page</h2>
+      <article><h3>Start Strong</h3><p>Try oats with fruit, yoghurt with nuts, eggs with whole-grain toast, or a bean-and-vegetable wrap for a filling morning meal.</p></article>
+      <article><h3>Quick Options</h3><p>Keep bananas, whole-grain cereal, and unsalted nuts available for mornings when there is little time to cook.</p></article>
+    </section>
+
+    <section class="extra-page" id="budget-foods">
+      <h2>Budget-Friendly Foods Page</h2>
+      <article><h3>Shop Smart</h3><p>Compare prices, use seasonal produce, choose store brands, and build meals around beans, lentils, eggs, oats, and brown rice.</p></article>
+      <article><h3>Reduce Waste</h3><p>Freeze extra bread and ripe fruit, store food correctly, and use leftover vegetables in soups, omelettes, or pasta.</p></article>
+    </section>
+
+    <section class="extra-page" id="food-safety">
+      <h2>Food Safety Page</h2>
+      <article><h3>Clean and Separate</h3><p>Wash hands and produce, keep raw meat separate from ready-to-eat food, and clean preparation surfaces after cooking.</p></article>
+      <article><h3>Cook and Chill</h3><p>Cook food thoroughly, refrigerate leftovers promptly, and follow package storage instructions. When in doubt, ask a trusted adult.</p></article>
+    </section>
+
+    <section class="extra-page" id="pet-nutrition">
+      <h2>Pet Nutrition Page</h2>
+      <article><h3>Balanced Pet Food</h3><p>Dogs and cats need species-appropriate, complete food made for their life stage. Fresh water should always be available.</p></article>
+      <article><h3>Safe Treats</h3><p>Treats should be occasional and small. Never share chocolate, grapes, raisins, onions, garlic, or xylitol-containing foods with pets.</p></article>
+    </section>
+
+    <section class="extra-page" id="dogs">
+      <h2>Dog Nutrition Page</h2>
+      <article><h3>Healthy Dog Habits</h3><p>Measure meals, keep a regular routine, and match portions to your dog’s size, age, activity, and veterinary advice.</p></article>
+      <article><h3>Watch for Changes</h3><p>Sudden weight change, vomiting, diarrhoea, or loss of appetite can signal illness. Contact a veterinarian instead of changing food suddenly.</p></article>
+    </section>
+
+    <section class="extra-page" id="cats">
+      <h2>Cat Nutrition Page</h2>
+      <article><h3>What Cats Need</h3><p>Cats are obligate carnivores and need food formulated for cats. Offer clean water and follow the feeding guidance on the label.</p></article>
+      <article><h3>Healthy Portions</h3><p>Use measured portions and monitor body condition. Ask a veterinarian about wet food, treats, and nutrition for kittens or older cats.</p></article>
+    </section>
+
+    <section class="extra-page" id="small-pets">
+      <h2>Small Pets Nutrition Page</h2>
+      <article><h3>Rabbits and Guinea Pigs</h3><p>Hay is essential for rabbits and guinea pigs. Provide suitable fresh greens, clean water, and vitamin C for guinea pigs as advised.</p></article>
+      <article><h3>Hamsters</h3><p>Offer a measured, species-appropriate mix with small amounts of fresh food. Avoid sticky, sugary, salty, or mouldy foods.</p></article>
+    </section>
+
+    <section class="extra-page" id="pet-care">
+      <h2>Everyday Pet Care Page</h2>
+      <article><h3>Food and Enrichment</h3><p>Use safe feeding toys and gentle activity to encourage natural behaviour. Keep food bowls and water containers clean.</p></article>
+      <article><h3>Professional Advice</h3><p>Each pet is different. A veterinarian can recommend portions and diets for allergies, medical conditions, growth, and weight management.</p></article>
+    </section>
+
+    <section class="extra-page" id="resources">
+      <h2>Nutrition Resources Page</h2>
+      <article><h3>Reliable Information</h3><p>Use guidance from registered dietitians, public-health organisations, and licensed veterinarians rather than unverified social-media claims.</p></article>
+      <article><h3>Keep Learning</h3><p>Read food labels, ask questions, and make gradual, practical improvements. Healthy habits are built through consistency, not perfection.</p></article>
+    </section>
+
+    <section class="extra-page" id="micronutrients">
+      <h2>Vitamins and Minerals Page</h2>
+      <article><h3>Small Nutrients, Big Jobs</h3><p>Vitamins and minerals help release energy, support bones, protect cells, and keep the immune system working. Eat a variety of vegetables, fruit, beans, whole grains, dairy or fortified alternatives, nuts, seeds, and protein foods.</p><p>Food is usually the best source. Supplements are not automatically safer or better, so discuss them with a qualified health professional.</p></article>
+      <article><h3>Build Variety</h3><p>Dark green vegetables can provide folate and vitamin K, citrus and peppers provide vitamin C, and dairy or fortified alternatives can provide calcium. Different foods supply different nutrients, so repeating one “superfood” is unnecessary.</p></article>
+    </section>
+
+    <section class="extra-page" id="labels">
+      <h2>Reading Food Labels Page</h2>
+      <article><h3>Compare Like with Like</h3><p>Check the serving size first, then compare calories, fibre, protein, saturated fat, sodium, and added sugars. A package may contain more than one serving, even when it looks like a single portion.</p></article>
+      <article><h3>Ingredient Lists</h3><p>Ingredients are listed by weight. Look for whole grains, vegetables, beans, and recognisable foods near the beginning. Use the label as a helpful tool rather than judging one food as “good” or “bad.”</p></article>
+    </section>
+
+    <section class="extra-page" id="hydration">
+      <h2>Hydration and Exercise Page</h2>
+      <article><h3>Drink Regularly</h3><p>Drink water with meals and keep a bottle nearby during school or work. Thirst, a dry mouth, dark urine, headache, and tiredness can be signs that more fluid may be needed.</p></article>
+      <article><h3>Active Days</h3><p>Water is often enough for everyday activity. During prolonged, intense exercise or very hot weather, ask a coach, parent, or health professional about replacing fluids and electrolytes.</p></article>
+    </section>
+
+    <section class="extra-page" id="food-mindset">
+      <h2>A Healthy Food Mindset Page</h2>
+      <article><h3>Balance, Not Perfection</h3><p>Enjoying favourite foods can fit into a healthy pattern. Aim for regular meals, variety, and enough food rather than strict rules or guilt.</p></article>
+      <article><h3>Listen and Ask</h3><p>Notice hunger and fullness, eat without rushing when possible, and ask a trusted adult or registered dietitian for help with allergies, medical diets, or concerns about eating and body image.</p></article>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>© 2026 Healthy Bites Food and Nutrition Blog. All rights reserved.</p>
+
+    <p>
+      Learn more about healthy habits:
+      <a href="https://www.nutrition.gov/" target="_blank" rel="noopener noreferrer">
+        Nutrition.gov
+      </a>
+    </p>
+  </footer>
+
+  <script>
+    (() => {
+      const progress = document.querySelector('.reading-progress');
+      const themeButton = document.querySelector('.theme-toggle');
+      const pages = [...document.querySelectorAll('#main-content > section, #main-content > aside')];
+      const previousButton = document.querySelector('.previous-page');
+      const nextButton = document.querySelector('.next-page');
+      const pageNumber = document.querySelector('.page-number');
+      const maximizeButton = document.querySelector('.maximize-button');
+      const searchForm = document.querySelector('.site-search');
+      const searchInput = document.querySelector('#site-search-input');
+      const searchStatus = document.querySelector('.search-status');
+      let pageIndex = 0;
+
+      const normalise = value => value.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+
+      const showPage = (index, direction = 1) => {
+        const oldIndex = pageIndex;
+        pageIndex = Math.max(0, Math.min(index, pages.length - 1));
+        document.querySelector('main').classList.toggle('page-forward', pageIndex >= oldIndex);
+        pages.forEach((page, i) => page.classList.toggle('page-active', i === pageIndex));
+        pageNumber.textContent = `Page ${pageIndex + 1} of ${pages.length}`;
+        previousButton.disabled = pageIndex === 0;
+        nextButton.disabled = pageIndex === pages.length - 1;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      };
+      const showHashPage = (hash) => {
+        const index = pages.findIndex(page => `#${page.id}` === hash);
+        if (index >= 0) showPage(index, index >= pageIndex ? 1 : -1);
+      };
+      previousButton.addEventListener('click', () => showPage(pageIndex - 1, -1));
+      nextButton.addEventListener('click', () => showPage(pageIndex + 1, 1));
+      document.querySelectorAll('header nav a').forEach(link => link.addEventListener('click', event => {
+        event.preventDefault();
+        showHashPage(link.hash);
+      }));
+      searchForm.addEventListener('submit', event => {
+        event.preventDefault();
+        const query = normalise(searchInput.value);
+        if (!query) {
+          searchStatus.textContent = 'Enter a topic to search.';
+          searchInput.focus();
+          return;
+        }
+        const match = pages.find(page => normalise(page.textContent).includes(query));
+        if (match) {
+          showPage(pages.indexOf(match));
+          searchStatus.textContent = `Showing results for “${searchInput.value.trim()}”.`;
+          match.querySelector('h2')?.focus();
+        } else {
+          searchStatus.textContent = `No page found for “${searchInput.value.trim()}”.`;
+        }
+      });
+      window.addEventListener('hashchange', () => showHashPage(window.location.hash));
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowLeft') showPage(pageIndex - 1, -1);
+        if (event.key === 'ArrowRight') showPage(pageIndex + 1, 1);
+      });
+      maximizeButton.addEventListener('click', async () => {
+        if (!document.fullscreenElement) await document.querySelector('main').requestFullscreen();
+        else await document.exitFullscreen();
+      });
+      document.addEventListener('fullscreenchange', () => {
+        maximizeButton.textContent = document.fullscreenElement ? '⛶ Exit Maximise' : '⛶ Maximise';
+      });
+      showPage(0);
+      const updateProgress = () => {
+        const pageHeight = document.documentElement.scrollHeight - window.innerHeight;
+        progress.style.width = `${pageHeight > 0 ? (window.scrollY / pageHeight) * 100 : 0}%`;
+      };
+      window.addEventListener('scroll', updateProgress, { passive: true });
+      updateProgress();
+      themeButton.addEventListener('click', () => {
+        const dark = document.body.classList.toggle('dark');
+        themeButton.setAttribute('aria-pressed', String(dark));
+        themeButton.textContent = dark ? '☀️ Theme' : '🌙 Theme';
+      });
+    })();
+  </script>
+
+</body>
+</html>

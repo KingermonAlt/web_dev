@@ -1,13 +1,62 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>Iframe in HTML</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080b18">
+  <title>Atmosphere | Featured Video</title>
+  <style>
+    :root { color-scheme: dark; --ink:#f7f8ff; --muted:#a7afd0; --accent:#8b5cf6; --cyan:#22d3ee; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; min-height:100vh; color:var(--ink); font-family:Inter,ui-sans-serif,system-ui,sans-serif; background:#080b18; overflow-x:hidden; }
+    body::before, body::after { content:""; position:fixed; z-index:-1; width:38rem; height:38rem; border-radius:50%; filter:blur(80px); opacity:.25; pointer-events:none; }
+    body::before { background:#7c3aed; top:-15rem; left:-12rem; } body::after { background:#0891b2; right:-15rem; bottom:-18rem; }
+    .shell { width:min(1120px,calc(100% - 2rem)); margin:auto; }
+    nav { display:flex; align-items:center; justify-content:space-between; padding:1.4rem 0; }
+    .brand { display:flex; align-items:center; gap:.7rem; font-weight:800; letter-spacing:.04em; }
+    .logo { display:grid; place-items:center; width:2.3rem; height:2.3rem; border-radius:.75rem; background:linear-gradient(135deg,var(--accent),var(--cyan)); box-shadow:0 0 28px #8b5cf688; }
+    .pill { border:1px solid #ffffff1f; border-radius:999px; padding:.6rem 1rem; color:var(--muted); font-size:.85rem; background:#ffffff08; }
+    main { padding:clamp(3rem,10vw,8rem) 0 5rem; text-align:center; }
+    .eyebrow { color:#67e8f9; text-transform:uppercase; letter-spacing:.2em; font-size:.72rem; font-weight:800; }
+    h1 { max-width:800px; margin:1rem auto; font-size:clamp(2.5rem,7vw,5.8rem); line-height:.98; letter-spacing:-.06em; }
+    h1 span { background:linear-gradient(90deg,#fff,var(--cyan),#c4b5fd); -webkit-background-clip:text; color:transparent; }
+    .intro { max-width:620px; margin:0 auto 2.5rem; color:var(--muted); font-size:1.08rem; line-height:1.7; }
+    .video-wrap { position:relative; max-width:900px; margin:auto; padding:8px; border-radius:22px; background:linear-gradient(135deg,#ffffff30,#ffffff05); box-shadow:0 25px 80px #0008,0 0 70px #5b21b633; }
+    .video-wrap::before { content:""; position:absolute; inset:-1px; z-index:-1; border-radius:inherit; background:linear-gradient(120deg,var(--cyan),transparent 35%,var(--accent)); filter:blur(18px); opacity:.6; }
+    iframe { display:block; width:100%; aspect-ratio:16/9; height:auto; border:0; border-radius:15px; background:#11152a; }
+    .controls { display:flex; justify-content:center; flex-wrap:wrap; gap:.8rem; margin-top:1.8rem; }
+    button { border:1px solid #ffffff22; border-radius:999px; padding:.75rem 1.15rem; color:var(--ink); background:#ffffff0d; cursor:pointer; font:inherit; transition:.25s ease; }
+    button:hover, button:focus-visible { transform:translateY(-3px); border-color:#67e8f9aa; background:#ffffff1c; outline:none; }
+    .primary { border:0; background:linear-gradient(100deg,var(--accent),#2563eb); box-shadow:0 8px 25px #4f46e566; }
+    .details { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-top:4rem; text-align:left; }
+    .card { padding:1.4rem; border:1px solid #ffffff14; border-radius:18px; background:#ffffff08; backdrop-filter:blur(12px); }
+    .card b { display:block; margin-bottom:.45rem; } .card p { margin:0; color:var(--muted); font-size:.9rem; line-height:1.5; }
+    footer { padding:1.5rem 0 2.5rem; color:#737b9d; text-align:center; font-size:.8rem; }
+    @media (max-width:650px) { .details { grid-template-columns:1fr; } nav { padding-top:1rem; } .pill { display:none; } }
+    @media (prefers-reduced-motion:no-preference) { main { animation:rise .8s ease both; } @keyframes rise { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:none; } } }
+  </style>
 </head>
-
 <body>
-    <h1>Youtube Video </h1>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/4TZP8geYW8s" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <div class="shell">
+    <nav><div class="brand"><span class="logo">📻</span> ATMOSPHERE</div><div class="pill">A moment worth watching</div></nav>
+    <main>
+      <div class="eyebrow">Featured experience</div>
+      <h1>Press play on <span>something beautiful.</span></h1>
+      <p class="intro">A cinematic space for ideas, stories, and inspiration. Settle in, turn up the volume, and enjoy the moment.</p>
+      <section class="video-wrap" aria-label="Featured YouTube video">
+        <iframe id="video" src="https://www.youtube.com/embed/4TZP8geYW8s?rel=0" title="Featured YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </section>
+      <div class="controls"><button class="primary" id="focusVideo">Watch now ↓</button><button id="shareButton">Share experience ↗</button></div>
+      <div class="details"><article class="card"><b>01 — Immerse</b><p>Designed with a calm interface so the story stays center stage.</p></article><article class="card"><b>02 — Explore</b><p>Responsive by nature, from your smallest screen to your biggest display.</p></article><article class="card"><b>03 — Enjoy</b><p>Take a breath and make a little room for inspiration today.</p></article></div>
+    </main>
+    <footer>Made for curious minds · <span id="year"></span></footer>
+  </div>
+  <script>
+    const video = document.getElementById('video');
+    document.getElementById('focusVideo').addEventListener('click', () => { video.scrollIntoView({ behavior:'smooth', block:'center' }); });
+    document.getElementById('shareButton').addEventListener('click', async (event) => { const button = event.currentTarget; try { await navigator.clipboard.writeText(location.href); button.textContent = 'Link copied ✓'; } catch { button.textContent = 'Copy unavailable'; } setTimeout(() => button.textContent = 'Share experience ↗', 2200); });
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>

@@ -2,19 +2,98 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Discover useful search engines and social media websites.">
   <title>Explore the Web</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --background: #080b1a;
+      --surface: rgba(22, 28, 59, .78);
+      --text: #f7f8ff;
+      --muted: #b8c0df;
+      --accent: #8c7bff;
+      --accent-2: #45d9c2;
+      --border: rgba(255, 255, 255, .14);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      padding: 2rem 1rem;
+      color: var(--text);
+      font: 1rem/1.6 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at 15% 10%, #28377c 0, transparent 35%),
+                  radial-gradient(circle at 85% 90%, #075c67 0, transparent 32%), var(--background);
+    }
+
+    main {
+      width: min(100%, 62rem);
+      padding: clamp(1.5rem, 5vw, 4rem);
+      border: 1px solid var(--border);
+      border-radius: 2rem;
+      background: var(--surface);
+      box-shadow: 0 2rem 5rem rgba(0, 0, 0, .35);
+      backdrop-filter: blur(18px);
+    }
+
+    header { max-width: 42rem; margin-bottom: 2.5rem; }
+    .eyebrow { margin: 0 0 .5rem; color: var(--accent-2); font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+    h1 { margin: 0; font-size: clamp(2.5rem, 8vw, 5.5rem); line-height: .98; letter-spacing: -.06em; }
+    header p { margin: 1.25rem 0 0; color: var(--muted); font-size: clamp(1rem, 2vw, 1.2rem); }
+    .categories { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1rem; }
+    section { padding: 1.35rem; border: 1px solid var(--border); border-radius: 1.25rem; background: rgba(255, 255, 255, .05); }
+    h2 { margin: 0 0 1rem; font-size: 1.35rem; }
+    nav { display: grid; gap: .7rem; }
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: .8rem 1rem;
+      border: 1px solid transparent;
+      border-radius: .75rem;
+      color: var(--text);
+      text-decoration: none;
+      background: rgba(255, 255, 255, .07);
+      transition: transform .2s, background .2s, border-color .2s;
+    }
+    a::after { content: "↗"; color: var(--accent-2); font-size: 1.2rem; }
+    a:hover, a:focus-visible { transform: translateY(-2px); border-color: var(--accent); background: rgba(140, 123, 255, .25); }
+    a:focus-visible { outline: 3px solid var(--accent-2); outline-offset: 3px; }
+    footer { margin-top: 2rem; color: var(--muted); font-size: .9rem; text-align: center; }
+    @media (prefers-reduced-motion: reduce) { a { transition: none; } }
+  </style>
 </head>
 <body>
-    <h1>Explore the Web</h1>
-    <p>Here are some of the most amazing websites on the internet. Click any link to visit!</p>
+  <main>
+    <header>
+      <p class="eyebrow">Your launchpad</p>
+      <h1>Explore the Web</h1>
+      <p>Find your next destination on the internet. Browse, connect, and discover something new.</p>
+    </header>
 
-    <h2>For searching</h2>
-    <a href="https://www.google.com">Google</a><br>
-    <a href="https://www.bing.com">Bing</a><br>
+    <div class="categories">
+      <section aria-labelledby="search-title">
+        <h2 id="search-title">For searching</h2>
+        <nav aria-label="Search websites">
+          <a href="https://www.google.com" target="_blank" rel="noopener noreferrer">Google</a>
+          <a href="https://www.bing.com" target="_blank" rel="noopener noreferrer">Bing</a>
+        </nav>
+      </section>
 
-    <h2>For social media</h2>
-    <a href="https://www.facebook.com">Facebook</a><br>
-    <a href="https://www.x.com">Twitter</a><br>
+      <section aria-labelledby="social-title">
+        <h2 id="social-title">For social media</h2>
+        <nav aria-label="Social media websites">
+          <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a>
+          <a href="https://www.x.com" target="_blank" rel="noopener noreferrer">X (Twitter)</a>
+        </nav>
+      </section>
+    </div>
+    <footer>Open a door. Follow your curiosity.</footer>
+  </main>
 </body>
 </html>

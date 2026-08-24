@@ -5,22 +5,45 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Did You Know?</title>
+  <style>
+    :root { --ink: #172033; --surface: #fff; --accent: #2563eb; }
+    * { box-sizing: border-box; }
+    body { max-width: 1000px; margin: 0 auto; padding: 2rem 1rem; color: var(--ink); font: 1rem/1.6 system-ui, sans-serif; background: linear-gradient(135deg, #dbeafe, #fef3c7); }
+    header, main, footer { margin: 0 auto; }
+    header { padding: 2rem 0; text-align: center; }
+    h1 { margin: 0; font-size: clamp(2.5rem, 8vw, 5rem); }
+    main { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+    section { padding: 1.5rem; border-radius: 1rem; background: color-mix(in srgb, var(--surface) 90%, transparent); box-shadow: 0 8px 24px #0002; }
+    section h2 { margin-top: 0; }
+    button { border: 0; border-radius: 999px; padding: .65rem 1rem; color: white; background: var(--accent); cursor: pointer; font: inherit; }
+    button:focus-visible { outline: 3px solid #f59e0b; outline-offset: 3px; }
+    .details-hidden { display: none; }
+    footer { padding-top: 2rem; text-align: center; }
+    @media (prefers-color-scheme: dark) { :root { --ink: #eef2ff; --surface: #172033; } body { background: #0f172a; } }
+  </style>
 </head>
 
 <body>
 
-  <h1>🌍 Did You Know?</h1>
+  <header>
+    <h1>🌍 Did You Know?</h1>
   <p>Welcome to the most amazing facts page on the internet. Get ready to have your mind blown!</p>
+    <button id="toggle-details" type="button" aria-expanded="true">Hide details</button>
+  </header>
 
-  <h2>🐙 Fact 1: The Amazing Octopus</h2>
+  <main>
+  <section aria-labelledby="octopus-fact">
+  <h2 id="octopus-fact">🐙 Fact 1: The Amazing Octopus</h2>
   <p>Octopuses have three hearts, nine brains, and blue blood. Two hearts pump blood to the gills, while the third pumps
     it to the rest of the body.</p>
 
   <h3>How smart are octopuses?</h3>
   <p>Octopuses can open jars, solve puzzles, and even recognise human faces. Scientists consider them one of the most
     intelligent invertebrates on Earth.</p>
+  </section>
 
-  <h2>⚡ Fact 2: Lightning Strikes</h2>
+  <section aria-labelledby="lightning-fact">
+  <h2 id="lightning-fact">⚡ Fact 2: Lightning Strikes</h2>
   <p>Lightning strikes the Earth about 100 times every single second. That is roughly 8 million lightning strikes per
     day!</p>
 
@@ -30,8 +53,10 @@
   <h4>Can lightning strike twice?</h4>
   <p>Yes! Lightning absolutely can and does strike the same place more than once, especially tall structures like towers
     and trees.</p>
+  </section>
 
-  <h2>🌊 Fact 3: The Deep Ocean</h2>
+  <section aria-labelledby="ocean-fact">
+  <h2 id="ocean-fact">🌊 Fact 3: The Deep Ocean</h2>
   <p>More than 80% of the world's oceans remain unexplored. Scientists believe there are millions of species living in
     the deep sea that we have never discovered.</p>
 
@@ -45,6 +70,22 @@
 
   <h6>Source</h6>
   <p>Facts sourced from National Geographic and NOAA Ocean Exploration.</p>
+  </section>
+  </main>
+
+  <footer><small>Explore, learn, and stay curious.</small></footer>
+
+  <script>
+    'use strict';
+    const toggle = document.querySelector('#toggle-details');
+    const details = document.querySelectorAll('main h3, main h4, main h5, main h6, main h3 + p, main h4 + p, main h5 + p, main h6 + p');
+    toggle.addEventListener('click', () => {
+      const expanded = toggle.getAttribute('aria-expanded') === 'true';
+      details.forEach((item) => item.classList.toggle('details-hidden', expanded));
+      toggle.setAttribute('aria-expanded', String(!expanded));
+      toggle.textContent = expanded ? 'Show details' : 'Hide details';
+    });
+  </script>
 
 </body>
 
