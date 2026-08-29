@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Doctor's Appointment</title>
+    <style>
+        :root {
+            --bg: #f5f5f3;
+            --panel: rgba(255, 255, 255, 0.72);
+            --panel-strong: #ffffff;
+            --text: #111827;
+            --muted: #6b7280;
+            --line: rgba(17, 24, 39, 0.12);
+            --accent: #1f2937;
+            --accent-soft: #eef2ff;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "SF Pro Display", "Segoe UI", Arial, sans-serif;
+            background: linear-gradient(180deg, #f7f7f5 0%, #f1f1ee 100%);
+            color: var(--text);
+            margin: 0;
+            padding: 40px 20px;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            background: var(--panel);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(17, 24, 39, 0.08);
+            border-radius: 18px;
+            box-shadow: 0 12px 40px rgba(17, 24, 39, 0.04);
+            padding: 32px 28px;
+        }
+
+        h1 {
+            margin: 0 0 8px;
+            color: var(--text);
+            font-size: clamp(2rem, 3vw, 2.5rem);
+            font-weight: 600;
+            letter-spacing: -0.04em;
+        }
+
+        p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 0.98rem;
+        }
+
+        hr {
+            border: 0;
+            border-top: 1px solid var(--line);
+            margin: 24px 0;
+        }
+
+        fieldset {
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 22px 18px 10px;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.18);
+        }
+
+        legend {
+            font-weight: 600;
+            color: var(--text);
+            padding: 0 8px;
+            letter-spacing: -0.01em;
+        }
+
+        label {
+            display: inline-block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        input, select, textarea, button {
+            font: inherit;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="password"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%;
+            max-width: 100%;
+            padding: 12px 14px;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.7);
+            box-sizing: border-box;
+            margin-bottom: 14px;
+            color: var(--text);
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: rgba(17, 24, 39, 0.25);
+            box-shadow: 0 0 0 3px rgba(17, 24, 39, 0.06);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 110px;
+        }
+
+        input[type="radio"],
+        input[type="checkbox"] {
+            margin-right: 8px;
+            accent-color: var(--accent);
+            transform: scale(1.04);
+        }
+
+        .inline {
+            display: inline-flex;
+            align-items: center;
+            margin-right: 18px;
+            margin-bottom: 12px;
+            color: var(--text);
+        }
+
+        .button-row {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+
+        button,
+        input[type="submit"],
+        input[type="reset"] {
+            padding: 11px 18px;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: transform 0.15s ease, opacity 0.15s ease, background 0.15s ease;
+        }
+
+        button:hover,
+        input[type="submit"]:hover,
+        input[type="reset"]:hover {
+            transform: translateY(-1px);
+        }
+
+        input[type="submit"],
+        button[type="submit"] {
+            background: #111827;
+            border-color: #111827;
+            color: white;
+        }
+
+        input[type="reset"],
+        button[type="reset"] {
+            background: rgba(255, 255, 255, 0.55);
+            color: var(--text);
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 20px 14px;
+            }
+
+            .container {
+                padding: 22px 16px;
+                border-radius: 16px;
+            }
+
+            fieldset {
+                padding-left: 14px;
+                padding-right: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>🏥 My Doctor's Appointment</h1>
+        <p>Fill in the form to book your appointment.</p>
+        <hr>
+
+        <form action="#" method="post">
+            <fieldset>
+                <legend>Personal Details</legend>
+
+                <label for="name">Your Name:</label><br>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+                <label for="email">Email Address:</label><br>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+                <label for="phone">Phone Number:</label><br>
+                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+
+                <label for="patient-id">Patient ID:</label><br>
+                <input type="password" id="patient-id" name="patient-id" placeholder="Enter your ID" required>
+
+                <label for="dob">Date of Birth:</label><br>
+                <input type="date" id="dob" name="dob" required>
+            </fieldset>
+
+            <fieldset>
+                <legend>Your Visit</legend>
+
+                <label for="doctor">Choose your Doctor:</label><br>
+                <select id="doctor" name="doctor" required>
+                    <option value="">-- Select a doctor --</option>
+                    <option value="dr-ray-general">Dr. Ray - General</option>
+                    <option value="dr-lee-pediatrics">Dr. Lee - Pediatrics</option>
+                    <option value="dr-martin-cardiology">Dr. Martin - Cardiology</option>
+                    <option value="dr-chen-dentistry">Dr. Chen - Dentistry</option>
+                </select>
+
+                <label for="appointment-type">Appointment Type:</label><br>
+                <select id="appointment-type" name="appointment-type">
+                    <option value="consultation">Consultation</option>
+                    <option value="follow-up">Follow-up</option>
+                    <option value="checkup">Check-up</option>
+                    <option value="emergency">Emergency</option>
+                </select>
+
+                <label>Why are you visiting?</label><br>
+                <div class="inline">
+                    <input type="checkbox" id="fever" name="reason" value="fever">
+                    <label for="fever" style="margin-bottom: 0;">Fever</label>
+                </div>
+                <div class="inline">
+                    <input type="checkbox" id="cold" name="reason" value="cold">
+                    <label for="cold" style="margin-bottom: 0;">Cold</label>
+                </div>
+                <div class="inline">
+                    <input type="checkbox" id="pain" name="reason" value="pain">
+                    <label for="pain" style="margin-bottom: 0;">Pain</label>
+                </div>
+                <div class="inline">
+                    <input type="checkbox" id="checkup" name="reason" value="checkup">
+                    <label for="checkup" style="margin-bottom: 0;">Check-up</label>
+                </div>
+
+                <label for="appointment-date">Preferred Appointment Date:</label><br>
+                <input type="date" id="appointment-date" name="appointment-date" required>
+
+                <label for="notes">Notes for the doctor:</label><br>
+                <textarea id="notes" name="notes" rows="4" cols="35" placeholder="Enter your message"></textarea>
+            </fieldset>
+
+            <fieldset>
+                <legend>Preferred Visit Day</legend>
+
+                <div class="inline">
+                    <input type="checkbox" id="monday" name="visit-day" value="monday">
+                    <label for="monday" style="margin-bottom: 0;">Monday</label>
+                </div>
+                <div class="inline">
+                    <input type="checkbox" id="wednesday" name="visit-day" value="wednesday">
+                    <label for="wednesday" style="margin-bottom: 0;">Wednesday</label>
+                </div>
+                <div class="inline">
+                    <input type="checkbox" id="friday" name="visit-day" value="friday">
+                    <label for="friday" style="margin-bottom: 0;">Friday</label>
+                </div>
+            </fieldset>
+
+            <div class="button-row">
+                <input type="submit" value="Book My Appointment">
+                <input type="reset" value="Clear Form">
+            </div>
+        </form>
+    </div>
+</body>
+</html>
