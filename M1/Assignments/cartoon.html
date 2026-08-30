@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Cartoon Character Card</title>
+
+  <style>
+    :root {
+      --bg: #f5f7ff;
+      --card: #ffffff;
+      --primary: #1f3a5f;
+      --secondary: #7c4dff;
+      --text: #2d2d2d;
+      --muted: #5f6470;
+      --accent: #dfe9ff;
+      --line: #e7eaf3;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-size: 16px;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--bg), #edf2ff);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+      padding: 30px 20px;
+    }
+
+    .card {
+      width: min(100%, 720px);
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      box-shadow: 0 12px 30px rgba(31, 58, 95, 0.12);
+      overflow: hidden;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #e9f0ff, #f1ecff);
+      padding: 28px 30px 20px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    h1 {
+      color: var(--primary);
+      font-size: clamp(2rem, 3vw, 2.6rem);
+      text-align: center;
+      letter-spacing: 0.5px;
+    }
+
+    .intro {
+      text-align: center;
+      color: var(--secondary);
+      font-weight: 700;
+      margin-top: 12px;
+      font-size: 1.05rem;
+    }
+
+    .content {
+      padding: 30px;
+    }
+
+    .section {
+      margin-bottom: 24px;
+    }
+
+    h2 {
+      color: var(--secondary);
+      font-size: 1.5rem;
+      margin-bottom: 14px;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 8px;
+    }
+
+    .details {
+      background: #f9faff;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 18px 20px;
+    }
+
+    .cartoon-detail {
+      color: var(--primary);
+      font-weight: 700;
+      margin: 8px 0;
+      padding-left: 8px;
+      border-left: 4px solid var(--secondary);
+    }
+
+    p {
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .reasons {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .reasons li {
+      background: #f7f8ff;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 12px 14px;
+      color: var(--text);
+    }
+
+    @media (max-width: 500px) {
+      .header,
+      .content {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+
+      h2 {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
+
+</head>
+<body>
+  <main class="card">
+    <header class="header">
+      <h1>My Cartoon Character Card</h1>
+      <p class="intro">Meet my favourite cartoon character!</p>
+    </header>
+
+    <div class="content">
+      <section class="section">
+        <h2>About My Character</h2>
+        <div class="details">
+          <p class="cartoon-detail">Character Name: Doraemon</p>
+          <p class="cartoon-detail">Best Friend: Nobita</p>
+          <p class="cartoon-detail">Favourite Food: Dorayaki</p>
+          <p class="cartoon-detail">Special Power: Future Gadgets</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Why I Like This Character</h2>
+        <ul class="reasons">
+          <li>Doraemon is kind, helpful, and funny.</li>
+          <li>He always tries to help his friends solve problems.</li>
+          <li>He teaches us about friendship and creativity.</li>
+        </ul>
+      </section>
+    </div>
+  </main>
+</body>
+</html>
