@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ogrefall | Side-scrolling RPG</title>
+  <link rel="stylesheet" href="ogrefall.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark">✦</span><div><strong>OGREFALL</strong><small>SEVEN REALMS. SEVENTY LEVELS.</small></div></div>
+      <div class="top-stats"><span>🪙 <b id="coins">0</b></span><span>⚔ <b id="weapon">Rusty Sword</b></span><span>★ <b id="score">0</b></span></div>
+      <nav class="tabs" aria-label="Game sections"><button class="tab active" data-view="adventure">Adventure</button><button class="tab" data-view="shop">Shop</button><button class="tab" data-view="crafting">Craft</button><button class="tab" data-view="leaderboard">Ranks</button></nav>
+      <div class="display-bubble" aria-label="Display controls"><button id="fullscreenBtn" title="Toggle fullscreen">⛶</button><button id="zoomOutBtn" title="Zoom out">−</button><span id="zoomValue">100%</span><button id="zoomInBtn" title="Zoom in">+</button></div>
+    </header>
+
+    <section id="adventure" class="view active-view">
+      <div class="intro"><div><p class="eyebrow">THE LONG ROAD HOME</p><h1>Break the Ogre King’s hold.</h1><p>Gather materials, master your fighting style, and clear all 70 levels.</p></div><button id="startBtn" class="primary">Start adventure <span>→</span></button></div>
+      <div class="game-layout">
+        <div class="stage-wrap"><canvas id="gameCanvas" width="840" height="450" aria-label="Ogrefall game scene"></canvas><div class="canvas-hint">A/D or ←/→ move · W/S lanes · J attack · K heavy · L ability · Space jump</div></div>
+        <aside class="mission-panel"><div class="mission-head"><div><p class="eyebrow">CURRENT MISSION</p><h2 id="realmName">Meadow of Beginnings</h2><p id="themeName">Green fields</p></div><span class="level-badge" id="levelNumber">01</span></div><div class="boss-card"><span class="boss-icon">☠</span><div><small>FINAL BOSS</small><strong id="bossName">Gorak the Rootbound</strong></div></div><div class="progress-row"><span>Ogres</span><b id="ogreProgress">0 / 3</b></div><div class="progress"><i id="ogreBar"></i></div><div class="progress-row"><span>Materials</span><b id="materialProgress">0 / 5</b></div><div class="progress"><i id="materialBar" class="green"></i></div><div class="mission-actions"><button id="gatherBtn">Gather materials</button><button id="ogreBtn">Defeat ogres</button><button id="bossBtn">Fight boss</button><button id="itemBtn">Pick up item</button><button id="nextBtn" class="primary">Next level →</button></div><p id="status" class="status">Press Start Adventure to begin.</p></aside>
+      </div>
+      <div class="level-map"><div class="section-label"><span class="eyebrow">WORLD MAP</span><span>7 sections · 10 levels each</span></div><div id="levelGrid" class="level-grid"></div></div>
+    </section>
+
+    <section id="shop" class="view"><div class="page-heading"><p class="eyebrow">THE TRADING POST</p><h1>Spend your battle spoils.</h1><p>Every ogre pays 5 coins. Every boss pays 100.</p></div><div id="shopList" class="item-list"></div></section>
+    <section id="crafting" class="view"><div class="page-heading"><p class="eyebrow">THE FORGE</p><h1>Build your advantage.</h1><p>Craft or equip a weapon before you return to the road.</p></div><div class="inventory" id="inventory"></div><div id="craftList" class="item-list"></div></section>
+    <section id="leaderboard" class="view"><div class="page-heading"><p class="eyebrow">THE HALL OF HEROES</p><h1>Leave your mark.</h1><p>Bosses and completed levels add to your score.</p></div><div id="leaderboardList" class="leaderboard"></div></section>
+    <div id="toast" class="toast" role="status"></div>
+  </main>
+  <script src="ogrefall-python.js"></script>
+</body>
+</html>

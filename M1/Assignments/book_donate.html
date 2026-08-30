@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Donation Form</title>
+    <style>
+      :root {
+        --bg-1: #fff9ef;
+        --bg-2: #f0f7ff;
+        --card: #ffffff;
+        --accent: #ff7a59;
+        --accent-2: #6c63ff;
+        --accent-3: #37c6a8;
+        --text: #1f2937;
+        --muted: #6b7280;
+        --border: #e5e7eb;
+        --shadow: 0 20px 40px rgba(108, 99, 255, 0.12);
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        font-family: Arial, Helvetica, sans-serif;
+        background: linear-gradient(135deg, var(--bg-1), var(--bg-2));
+        color: var(--text);
+        padding: 32px 16px;
+      }
+
+      .container {
+        width: min(900px, 100%);
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: 18px;
+      }
+
+      .header h1 {
+        margin: 0;
+        font-size: clamp(2rem, 4vw, 3rem);
+        letter-spacing: 0.04em;
+      }
+
+      .header p {
+        margin: 10px 0 0;
+        color: var(--muted);
+        font-size: 1.05rem;
+      }
+
+      form {
+        background: var(--card);
+        border: 1px solid rgba(255,255,255,0.8);
+        border-radius: 24px;
+        box-shadow: var(--shadow);
+        padding: 28px;
+      }
+
+      fieldset {
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        padding: 20px 18px 12px;
+        margin-bottom: 22px;
+        background: linear-gradient(180deg, #ffffff, #fdfdff);
+      }
+
+      legend {
+        font-weight: 700;
+        color: var(--accent-2);
+        padding: 0 10px;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 18px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: var(--text);
+      }
+
+      input, select, textarea, button {
+        font: inherit;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      input[type="tel"],
+      input[type="password"],
+      input[type="date"],
+      select,
+      textarea {
+        width: 100%;
+        padding: 12px 14px;
+        border: 1.5px solid var(--border);
+        border-radius: 12px;
+        background: #fff;
+        color: var(--text);
+        transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+      }
+
+      input:focus, select:focus, textarea:focus {
+        outline: none;
+        border-color: var(--accent-2);
+        box-shadow: 0 0 0 4px rgba(108, 99, 255, 0.12);
+      }
+
+      .radio-group,
+      .check-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        padding-top: 2px;
+      }
+
+      .radio-item,
+      .check-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #f7f7ff;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 10px 12px;
+        min-width: 120px;
+      }
+
+      input[type="radio"],
+      input[type="checkbox"] {
+        accent-color: var(--accent-2);
+        width: 16px;
+        height: 16px;
+      }
+
+      .note {
+        margin-top: 8px;
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+
+      .submit-wrap {
+        display: flex;
+        justify-content: center;
+        margin-top: 18px;
+      }
+
+      button {
+        border: none;
+        border-radius: 999px;
+        padding: 14px 28px;
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        color: #fff;
+        font-weight: 700;
+        cursor: pointer;
+        box-shadow: 0 14px 20px rgba(255, 122, 89, 0.25);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 16px 24px rgba(108, 99, 255, 0.28);
+      }
+
+      .tiny {
+        font-size: 0.85rem;
+        color: var(--muted);
+      }
+
+      @media (max-width: 600px) {
+        form {
+          padding: 18px 14px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>📚 Book Donation Form</h1>
+        <p>Share the joy of reading and help build a brighter library community.</p>
+      </div>
+
+      <form>
+        <fieldset>
+          <legend>Donor Details</legend>
+          <div class="grid">
+            <div>
+              <label for="name">Your Name</label>
+              <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+            </div>
+
+            <div>
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" placeholder="example@email.com" required>
+            </div>
+
+            <div>
+              <label for="donor-id">Donor ID</label>
+              <input type="password" id="donor-id" name="donor-id" placeholder="Enter your donor ID" required>
+            </div>
+
+            <div>
+              <label for="donation-date">Donation Date</label>
+              <input type="date" id="donation-date" name="donation-date" required>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Book Details</legend>
+          <div class="grid">
+            <div>
+              <label for="category">Choose Book Category</label>
+              <select id="category" name="category" required>
+                <option value="">-- Select a category --</option>
+                <option value="fiction">Fiction</option>
+                <option value="science">Science</option>
+                <option value="history">History</option>
+                <option value="education">Education</option>
+                <option value="children">Children</option>
+                <option value="technology">Technology</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="quantity">Number of Books</label>
+              <input type="number" id="quantity" name="quantity" min="1" max="20" placeholder="e.g. 3" required>
+            </div>
+          </div>
+
+          <div style="margin-top: 18px;">
+            <label>Book Condition</label>
+            <div class="radio-group">
+              <label class="radio-item"><input type="radio" name="condition" value="new" required> Like New</label>
+              <label class="radio-item"><input type="radio" name="condition" value="good"> Good</label>
+              <label class="radio-item"><input type="radio" name="condition" value="used"> Used</label>
+            </div>
+          </div>
+
+          <div style="margin-top: 20px;">
+            <label for="notes">Book Title or Additional Notes</label>
+            <textarea id="notes" name="notes" rows="4" placeholder="e.g. The book title, author name, or any notes."></textarea>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Preferred Drop-Off Day</legend>
+          <div class="check-group">
+            <label class="check-item"><input type="checkbox" name="dropoff" value="mon"> Monday</label>
+            <label class="check-item"><input type="checkbox" name="dropoff" value="wed"> Wednesday</label>
+            <label class="check-item"><input type="checkbox" name="dropoff" value="fri"> Friday</label>
+            <label class="check-item"><input type="checkbox" name="dropoff" value="sat"> Saturday</label>
+          </div>
+        </fieldset>
+
+        <div class="submit-wrap">
+          <button type="submit">Donate My Book</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

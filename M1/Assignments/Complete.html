@@ -1,82 +1,56 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>My Media Adventure</title>
+  <style>
+    :root { --cyan:#59f3ff; --pink:#ff65d8; --ink:#080b28; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; min-height:100vh; overflow-x:hidden; color:#fff; font-family:Arial,sans-serif; background:radial-gradient(circle at 50% 0,#263c83 0,#0b1035 42%,#030414 100%); }
+    body::before { content:""; position:fixed; inset:0; pointer-events:none; opacity:.55; background-image:radial-gradient(#fff 1px,transparent 1px),radial-gradient(#fff 1px,transparent 1px); background-size:83px 83px,137px 137px; background-position:10px 20px,60px 90px; animation:stars 18s linear infinite; }
+    nav { position:fixed; z-index:10; top:0; width:100%; padding:16px; text-align:center; background:#070a27cc; backdrop-filter:blur(12px); border-bottom:1px solid #ffffff30; }
+    nav a, button { color:#fff; border:1px solid var(--cyan); border-radius:99px; padding:9px 16px; margin:4px; background:#112052aa; text-decoration:none; cursor:pointer; transition:.25s; }
+    nav a:hover, button:hover { color:#07102d; background:var(--cyan); box-shadow:0 0 20px var(--cyan); transform:translateY(-2px); }
+    main { width:min(1150px,92%); margin:auto; padding:105px 0 60px; text-align:center; }
+    header { min-height:55vh; display:grid; place-content:center; animation:rise 1.2s ease both; }
+    h1 { margin:0; font-size:clamp(3rem,10vw,7rem); line-height:.95; text-transform:uppercase; letter-spacing:6px; background:linear-gradient(90deg,var(--cyan),#fff,var(--pink)); background-size:200%; -webkit-background-clip:text; color:transparent; animation:shine 4s linear infinite; }
+    h2 { color:var(--cyan); font-size:clamp(1.7rem,4vw,3rem); }
+    .lead { font-size:1.2rem; max-width:680px; margin:25px auto; line-height:1.7; }
+    section { margin:45px 0; padding:35px 20px; border:1px solid #ffffff28; border-radius:28px; background:#10184499; box-shadow:0 15px 60px #0006; opacity:0; transform:translateY(35px); transition:1s ease; }
+    section.visible { opacity:1; transform:none; }
+    .gallery { display:flex; justify-content:center; flex-wrap:wrap; gap:22px; }
+    .gallery img { width:min(300px,90vw); height:300px; object-fit:cover; border-radius:22px; border:2px solid #ffffff55; box-shadow:0 0 25px #000; transition:.45s cubic-bezier(.2,.8,.2,1); }
+    .gallery img:hover { transform:translateY(-14px) scale(1.06) rotate(var(--tilt)); border-color:var(--pink); box-shadow:0 0 35px var(--pink); }
+    audio, video, iframe { max-width:100%; border-radius:18px; box-shadow:0 0 25px #0008; }
+    .media { display:grid; gap:22px; justify-items:center; }
+    .pulse { animation:pulse 2s infinite; }
+    .top { position:fixed; right:20px; bottom:20px; z-index:5; font-size:1.4rem; }
+    footer { padding:30px; color:#aab5dc; }
+    @keyframes stars { to { background-position:10px 103px,60px -47px; } }
+    @keyframes rise { from { opacity:0; transform:translateY(35px); } to { opacity:1; transform:none; } }
+    @keyframes shine { to { background-position:200%; } }
+    @keyframes pulse { 50% { box-shadow:0 0 35px var(--cyan); } }
+    @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms!important; scroll-behavior:auto!important; transition-duration:.01ms!important; } }
+  </style>
 </head>
-
 <body>
-
-  <center>
-
-    <h1>My Media Adventure Webpage</h1>
-
-    <p>
-      Welcome to my fun webpage! Here, you can explore images, listen to music, watch a video, and play a game.
-    </p>
-
-    <hr>
-
-    <h2>Space mission gallery</h2>
-
-    <p>
-      These images show my exciting space adventure.
-    </p>
-
-    <img src="rocket.png" alt="A rocket flying into space" width="300" height="300">
-    <img src="planet.png" alt="A colourful planet in space" width="300" height="300">
-    <img src="astronaut.png" alt="An astronaut exploring space" width="300" height="300">
-
-    <hr>
-
-    <h2>Aquatic beats party</h2>
-
-    <p>
-      Play the music and enjoy the aquatic animal video.
-    </p>
-
-    <audio controls loop>
-      <source src="music.mp3" type="audio/mpeg">
-      Your browser does not support the audio tag.
-    </audio>
-
-    <br><br>
-
-    <video width="500" height="350" controls poster="poster." loop>
-      <source src="aqua.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-
-    <hr>
-
-    <h2>Super game zone</h2>
-
-    <p>
-      Play this Scratch game directly inside the webpage.
-    </p>
-
-    <iframe 
-      src="https://scratch.mit.edu/projects/60917032/embed"
-      allowtransparency="true"
-      width="500"
-      height="400"
-      frameborder="0"
-      scrolling="no"
-      allowfullscreen>
-    </iframe>
-
-    <hr>
-
-    <h2>Mission complete!</h2>
-
-    <p>
-      I used image, audio, video, and iframe tags to make this HTML media webpage.
-    </p>
-
-  </center>
-
+  <nav><a href="#gallery">🚀 Gallery</a><a href="#beats">🎵 Beats</a><a href="#game">🎮 Game</a><button id="theme">✨ Warp mode</button></nav>
+  <main>
+    <header><h1>My Media<br>Adventure</h1><p class="lead">Explore the stars, dive into aquatic beats, and launch an interactive game mission.</p><a href="#gallery"><button class="pulse">Begin mission ↓</button></a></header>
+    <section id="gallery"><h2>🌌 Space Mission Gallery</h2><p>Three windows into an exciting cosmic adventure.</p><div class="gallery"><img style="--tilt:-3deg" src="rocket.png" alt="A rocket flying into space" loading="lazy"><img style="--tilt:3deg" src="planet.png" alt="A colourful planet in space" loading="lazy"><img style="--tilt:-2deg" src="astronaut.png" alt="An astronaut exploring space" loading="lazy"></div></section>
+    <section id="beats"><h2>🌊 Aquatic Beats Party</h2><p>Turn up the music and enjoy the aquatic animal video.</p><div class="media"><audio controls loop><source src="music.mp3" type="audio/mpeg">Your browser does not support audio.</audio><video width="500" height="350" controls poster="poster.jpg" loop><source src="aqua.mp4" type="video/mp4">Your browser does not support video.</video></div></section>
+    <section id="game"><h2>🕹️ Super Game Zone</h2><p>Play this Scratch game directly inside the webpage.</p><iframe src="https://scratch.mit.edu/projects/60917032/embed" title="Scratch game" width="500" height="400" frameborder="0" scrolling="no" allowfullscreen></iframe></section>
+    <section><h2>🏆 Mission Complete!</h2><p>You explored images, audio, video, animation, and an interactive game.</p><button id="launch">Launch celebration 🚀</button></section>
+  </main><button class="top" id="top" aria-label="Back to top">↑</button><footer>Made for curious explorers • <span id="clock"></span></footer>
+  <script>
+    const observer=new IntersectionObserver(entries=>entries.forEach(e=>e.isIntersecting&&e.target.classList.add('visible')),{threshold:.15});
+    document.querySelectorAll('section').forEach(s=>observer.observe(s));
+    document.getElementById('top').onclick=()=>scrollTo({top:0,behavior:'smooth'});
+    document.getElementById('theme').onclick=()=>document.body.classList.toggle('warp');
+    document.getElementById('launch').onclick=e=>{e.target.textContent='🎉 Mission launched!'; document.body.animate([{filter:'hue-rotate(0)'},{filter:'hue-rotate(360deg)'},{filter:'hue-rotate(0)'}],{duration:1200});};
+    setInterval(()=>document.getElementById('clock').textContent=new Date().toLocaleTimeString(),1000);
+  </script>
 </body>
-
 </html>

@@ -6,6 +6,79 @@
 
     <!-- Add a title for the webpage -->
     <title>KidsCare - Health Guide</title>
+
+    <style>
+        :root {
+            --ink: #17324d;
+            --blue: #2563eb;
+            --sky: #e0f2fe;
+            --green: #16a34a;
+            --card: rgba(255, 255, 255, .92);
+        }
+
+        * { box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            margin: 0;
+            color: var(--ink);
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #f0f9ff, #dcfce7);
+        }
+
+        header {
+            padding: 2.5rem 1rem;
+            text-align: center;
+            color: white;
+            background: linear-gradient(135deg, #2563eb, #06b6d4, #16a34a);
+            background-size: 200% 200%;
+            animation: gradientShift 10s ease infinite;
+        }
+
+        h1 { margin: 0 0 1rem; animation: popIn .8s ease both; }
+        nav { display: flex; justify-content: center; flex-wrap: wrap; gap: .75rem; }
+        nav a {
+            padding: .55rem 1rem;
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+            border: 2px solid rgba(255,255,255,.7);
+            border-radius: 999px;
+            transition: transform .25s, background-color .25s, box-shadow .25s;
+        }
+        nav a:hover, nav a:focus { background: white; color: var(--blue); transform: translateY(-4px); box-shadow: 0 8px 18px #0003; }
+
+        main { width: min(1100px, 92%); margin: 2rem auto; }
+        section, aside {
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background: var(--card);
+            border-radius: 20px;
+            box-shadow: 0 8px 24px #17405b1c;
+            transition: transform .3s, box-shadow .3s;
+        }
+        section:hover, aside:hover { transform: translateY(-5px); box-shadow: 0 14px 30px #17405b2b; }
+        #health { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; align-items: center; }
+        figure { margin: 0; text-align: center; }
+        figure img { width: 100%; max-width: 500px; height: auto; border-radius: 16px; transition: transform .5s; }
+        figure img:hover { transform: scale(1.04) rotate(1deg); }
+        figcaption { font-style: italic; }
+        li { margin: .55rem 0; transition: transform .2s, color .2s; }
+        li:hover { color: var(--green); transform: translateX(8px); }
+        iframe { display: block; width: 100%; max-width: 700px; margin: auto; border: 0; border-radius: 14px; }
+        footer { padding: 1.5rem; text-align: center; background: var(--ink); color: white; }
+        .reveal { opacity: 0; transform: translateY(25px); transition: opacity .7s ease, transform .7s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        #back-to-top { position: fixed; right: 1rem; bottom: 1rem; padding: .7rem 1rem; border: 0; border-radius: 50%; background: var(--blue); color: white; cursor: pointer; opacity: 0; pointer-events: none; transition: opacity .3s, transform .3s; }
+        #back-to-top.show { opacity: 1; pointer-events: auto; }
+        #back-to-top:hover { transform: translateY(-4px); }
+        @keyframes gradientShift { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+        @keyframes popIn { from { opacity: 0; transform: scale(.8); } to { opacity: 1; transform: scale(1); } }
+        @media (max-width: 700px) { #health { grid-template-columns: 1fr; } h1 { font-size: 1.7rem; } }
+        @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; } }
+    </style>
 </head>
 
 <body>
@@ -25,7 +98,7 @@
     <main>
 
         <!-- Create a section explaining the importance of exercise -->
-        <section id="health">
+        <section id="health" class="reveal">
 
             <article>
                 <h2>💪 Why Your Body Needs Exercise</h2>
@@ -60,7 +133,7 @@
         </section>
 
         <!-- Create a list of quick health tips -->
-        <aside id="tips">
+        <aside id="tips" class="reveal">
             <h2>☀️ Quick Health Tips</h2>
 
             <ul>
@@ -73,7 +146,7 @@
         </aside>
 
         <!-- Add a video using an iframe -->
-        <section id="media">
+        <section id="media" class="reveal">
             <h2>🎬 Watch &amp; Learn</h2>
 
             <iframe
@@ -92,6 +165,26 @@
     <footer>
         <p>&copy; 2024 KidsCare. Keep moving, stay curious, and take care of yourself!</p>
     </footer>
+
+    <button id="back-to-top" aria-label="Back to top">↑</button>
+
+    <script>
+        const revealItems = document.querySelectorAll('.reveal');
+        const topButton = document.getElementById('back-to-top');
+
+        const revealOnScroll = () => {
+            revealItems.forEach(item => {
+                if (item.getBoundingClientRect().top < window.innerHeight - 80) {
+                    item.classList.add('visible');
+                }
+            });
+            topButton.classList.toggle('show', window.scrollY > 400);
+        };
+
+        window.addEventListener('scroll', revealOnScroll, { passive: true });
+        window.addEventListener('load', revealOnScroll);
+        topButton.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    </script>
 
 </body>
 </html>
