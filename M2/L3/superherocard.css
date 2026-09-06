@@ -1,0 +1,30 @@
+body {
+    background-color: coral;
+    font-family: 'Comfortaa', sans-serif;
+}
+
+.label {
+    text-transform: uppercase;
+    text-decoration: underline;
+    color:lavender
+}
+
+.power {
+    font-weight: bold;
+    color:snow
+}
+
+.weakness {
+    text-decoration: line-through;
+    color: lightslategrey
+}
+
+.badge {
+    color:chocolate;
+    transform: rotate(90deg);
+}
+
+.made-by {
+    color:aqua;
+    font-style: italic;
+}
