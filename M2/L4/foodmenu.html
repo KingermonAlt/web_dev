@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Food Menu</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #fff8f0;
+      padding: 30px;
+      text-align: center;
+    }
+
+    h1 { color: #e65c00; }
+
+    /* Sibling Selector - styles the paragraph right after h1 */
+    h1 + p {
+      background: #ffe0b2;
+      padding: 10px 20px;
+      border-radius: 8px;
+      display: inline-block;
+    }
+
+    ul { padding: 0; margin-top: 20px; }
+
+    /* Child Selector - styles only direct li children of ul */
+    ul > li {
+      list-style: none;
+      font-size: 18px;
+      font-weight: bold;
+      color: #5d4037;
+      padding: 10px 20px;
+      margin: 6px auto;
+      width: 260px;
+      background: #fff3e0;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    /* Hover animation for menu options */
+    ul > li:hover {
+      transform: translateY(-4px) scale(1.03);
+      box-shadow: 0 6px 12px rgba(230, 92, 0, 0.25);
+      background: #ffe0b2;
+    }
+
+    /* Click animation for menu options */
+    ul > li.clicked {
+      animation: optionClick 0.4s ease;
+    }
+
+    .order-panel {
+      display: none;
+      max-width: 420px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #fff3e0;
+      border: 2px solid #ffd180;
+      border-radius: 10px;
+      text-align: left;
+    }
+
+    .order-panel.visible { display: block; }
+
+    .order-panel h2 {
+      margin-top: 0;
+      color: #e65c00;
+    }
+
+    .order-panel label {
+      display: block;
+      margin-top: 10px;
+      color: #5d4037;
+      font-weight: bold;
+    }
+
+    .order-panel input {
+      box-sizing: border-box;
+      width: 100%;
+      padding: 8px;
+      margin-top: 4px;
+      border: 1px solid #d7a86e;
+      border-radius: 5px;
+    }
+
+    .buy-button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      color: white;
+      background: #e65c00;
+      border: 0;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .moderation-warning {
+      display: none;
+      margin-top: 15px;
+      text-align: center;
+    }
+
+    .moderation-warning.visible { display: block; }
+
+    .moderation-warning img {
+      max-width: 100%;
+      border-radius: 8px;
+    }
+
+    @keyframes optionClick {
+      50% { transform: scale(0.94); }
+    }
+
+    /* nth-child - highlights the 3rd item as Chef's Special */
+    ul > li:nth-child(3) {
+      background: #ffd180;
+      border: 2px solid #e65c00;
+      color: #4e342e;
+    }
+
+    .desc {
+      color: #555;
+      margin-top: 20px;
+      font-size: 15px;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* first-letter - makes the first letter big and bold */
+    .desc::first-letter {
+      font-size: 220%;
+      color: #e65c00;
+      font-weight: bold;
+    }
+
+    .links { margin-top: 25px; }
+
+    /* Hover Effect - links glow when mouse moves over them */
+    a {
+      color: #e65c00;
+      text-decoration: none;
+      font-size: 15px;
+      margin: 0 12px;
+      padding: 8px 18px;
+      border: 2px solid #e65c00;
+      border-radius: 8px;
+    }
+
+    a:hover {
+      background: #e65c00;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <h1>My Food Menu</h1>
+  <p>Pick your favourite dish and dig in!</p>
+
+  <ul>
+    <li>Pizza</li>
+    <li>Burger</li>
+    <li>Tacos — Chef's Special!</li>
+    <li>Noodles</li>
+    <li>Ice Cream</li>
+  </ul>
+
+  <section class="order-panel" id="orderPanel" aria-live="polite">
+    <h2 id="selectedDish">Order</h2>
+    <p>Price: $<span id="dishPrice">0.00</span> each</p>
+    <label for="quantity">How many would you like?</label>
+    <input id="quantity" type="number" min="1" max="7" value="1">
+    <label for="contactName">Contact name</label>
+    <input id="contactName" type="text" placeholder="Your name" required>
+    <label for="contactEmail">Contact email or phone</label>
+    <input id="contactEmail" type="text" placeholder="Email or phone number" required>
+    <label for="deliveryNotes">Delivery notes</label>
+    <input id="deliveryNotes" type="text" placeholder="What should we do if it does not arrive as expected?">
+    <button class="buy-button" type="button">Buy Now</button>
+    <div class="moderation-warning" id="moderationWarning" role="alert">
+      <img alt="Moderators don't allow this text" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='100' viewBox='0 0 420 100'%3E%3Crect width='420' height='100' rx='12' fill='%23b71c1c'/%3E%3Ctext x='210' y='58' text-anchor='middle' font-family='Arial' font-size='22' font-weight='bold' fill='white'%3EModerators don't allow this text%3C/text%3E%3C/svg%3E">
+    </div>
+  </section>
+
+  <p class="desc">Every dish on this menu is made with love and
+  loads of flavour. Try them all and find your favourite!</p>
+
+  <div class="links">
+    <a href="#">Order Now</a>
+    <a href="#">See More</a>
+  </div>
+
+  <script>
+    document.querySelectorAll('ul > li').forEach(function (option) {
+      option.addEventListener('click', function () {
+        option.classList.remove('clicked');
+        void option.offsetWidth;
+        option.classList.add('clicked');
+
+        var prices = {
+          Pizza: 12.99,
+          Burger: 9.99,
+          "Tacos — Chef's Special!": 11.99,
+          Noodles: 8.99,
+          "Ice Cream": 5.99
+        };
+        var panel = document.getElementById('orderPanel');
+        document.getElementById('selectedDish').textContent = 'Order ' + option.textContent;
+        document.getElementById('dishPrice').textContent = prices[option.textContent].toFixed(2);
+        panel.classList.add('visible');
+        panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    });
+
+    var moderationWarning = document.getElementById('moderationWarning');
+    var moderatedFields = document.querySelectorAll('#contactName, #contactEmail, #deliveryNotes');
+    var blockedPattern = /(?:\bstupid\b|\bidiot\b|\bdumb\b|\b(?:damn|hell|f+u+c+k|s+h+i+t)\b|\b(?:bomb|weapon|drug|poison)\b)/i;
+    var quantityInput = document.getElementById('quantity');
+
+    function hasBlockedText() {
+      return Array.prototype.some.call(moderatedFields, function (field) {
+        return blockedPattern.test(field.value);
+      });
+    }
+
+    moderatedFields.forEach(function (field) {
+      field.addEventListener('input', function () {
+        moderationWarning.classList.toggle('visible', hasBlockedText());
+      });
+    });
+
+    quantityInput.addEventListener('input', function () {
+      if (Number(quantityInput.value) > 7) {
+        quantityInput.value = 7;
+        alert('You are not healthy and can\'t order it.');
+      }
+    });
+
+    document.querySelector('.buy-button').addEventListener('click', function () {
+      if (hasBlockedText()) {
+        moderationWarning.classList.add('visible');
+        alert("Moderators don't allow this text.");
+        return;
+      }
+      var name = document.getElementById('contactName');
+      var contact = document.getElementById('contactEmail');
+      var quantity = document.getElementById('quantity');
+      var deliveryNotes = document.getElementById('deliveryNotes');
+      if (Number(quantity.value) > 7) {
+        alert('You are not healthy and can\'t order it.');
+        quantity.value = 7;
+        return;
+      }
+      if (!name.value.trim() || !contact.value.trim()) {
+        alert('Please enter your name and contact information.');
+        return;
+      }
+      if (document.getElementById('selectedDish').textContent === 'Order Pizza' &&
+          Number(quantity.value) > 6 && !deliveryNotes.value.trim()) {
+        alert("Don't take too much, it's unhealthy");
+        return;
+      }
+      alert('Thanks! Your order has been received.');
+    });
+  </script>
+</body>
+</html>
