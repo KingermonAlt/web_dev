@@ -1,0 +1,81 @@
+/* Extra motion and artwork for the fact-file cards. */
+.animal-grid {
+	perspective: 1200px;
+}
+
+.fact-file {
+	animation: card-enter .8s cubic-bezier(.2, .8, .2, 1) both, card-float 6s ease-in-out infinite;
+	transform-style: preserve-3d;
+}
+
+.fact-file:nth-child(2) { animation-delay: .12s, 1.2s; }
+.fact-file:nth-child(3) { animation-delay: .24s, 2.4s; }
+.fact-file:nth-child(4) { animation-delay: .36s, 3.6s; }
+.fact-file:nth-child(5) { animation-delay: .48s, 4.8s; }
+.fact-file:nth-child(6) { animation-delay: .6s, 6s; }
+
+.fact-file:hover {
+	transform: translateY(-14px) rotateX(2deg) rotateY(-3deg) scale(1.035);
+	transition: transform .4s cubic-bezier(.2, .8, .2, 1), box-shadow .4s ease;
+}
+
+.animal-art .shape {
+	animation: animal-breathe 2.8s ease-in-out infinite;
+}
+
+.animal-art::after {
+	content: "✦";
+	position: absolute;
+	color: rgba(79, 129, 34, .45);
+	font-size: 24px;
+	animation: sparkle 2.2s ease-in-out infinite;
+}
+
+.fox .shape {
+	width: 90px;
+	height: 65px;
+	background: #c86b35;
+	border-radius: 45% 55% 45% 50%;
+	box-shadow: 35px -28px 0 -18px #f5d6ad, -32px 24px 0 -20px #f5d6ad;
+}
+
+.fox .shape::after {
+	content: "";
+	position: absolute;
+	top: -22px;
+	left: 12px;
+	border-right: 18px solid transparent;
+	border-bottom: 30px solid #c86b35;
+	border-left: 18px solid transparent;
+}
+
+.octopus .shape {
+	width: 95px;
+	height: 78px;
+	background: #a44772;
+	border-radius: 50% 50% 42% 42%;
+	box-shadow: -32px 48px 0 -24px #a44772, -10px 53px 0 -24px #a44772, 14px 53px 0 -24px #a44772, 38px 48px 0 -24px #a44772;
+}
+
+.octopus .shape::before { background: #fff; box-shadow: -60px 35px 0 -5px #fff; }
+.hummingbird .shape { width: 95px; height: 42px; background: #207a67; transform: rotate(-8deg); box-shadow: -42px -12px 0 -15px #67c7a8, 44px 2px 0 -12px #ef5c62; }
+.hummingbird .shape::after { content: ""; position: absolute; right: -32px; top: 12px; border-left: 35px solid #3b3328; border-top: 5px solid transparent; border-bottom: 5px solid transparent; }
+
+@keyframes card-float {
+	0%, 100% { translate: 0 0; }
+	50% { translate: 0 -5px; }
+}
+
+@keyframes animal-breathe {
+	0%, 100% { scale: 1; }
+	50% { scale: 1.07; }
+}
+
+@keyframes sparkle {
+	0%, 100% { opacity: .2; rotate: 0deg; scale: .75; }
+	50% { opacity: 1; rotate: 18deg; scale: 1.15; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.fact-file, .animal-art .shape, .animal-art::after { animation: none; }
+}
