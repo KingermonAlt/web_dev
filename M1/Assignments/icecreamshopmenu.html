@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Ice Cream Shop Menu</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fff4f8;
+      text-align: center;
+      color: #4a2c2a;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      color: #d63384;
+      font-size: 36px;
+    }
+    h1 + p {
+      color: #8a2be2;
+      font-weight: bold;
+      background-color: #ffe3f1;
+      border-radius: 10px;
+    }
+    .shop-description::first-letter {
+      font-size: 36px;
+      color: #ff1493;
+      font-weight: bold;
+    }
+    .menu-box {
+      width: 420px;
+      background-color: white;
+      border: 3px solid #ff69b4;
+      border-radius: 15px;
+      margin: 20px auto;
+      padding: 20px;
+      box-shadow: 0 8px 20px rgba(214, 51, 132, 0.15);
+    }
+    ul {
+      padding: 0;
+    }
+    ul > li {
+      list-style: none;
+      background-color: #fff0f5;
+      color: #5c2a4a;
+      font-size: 18px;
+      font-weight: bold;
+      margin: 10px;
+      padding: 12px;
+      border-radius: 10px;
+      border: 2px solid #ffb6c1;
+    }
+    ul > li:nth-child(3) {
+      background-color: #fff3cd;
+      color: #b85c00;
+      border: 3px solid #ffa500;
+    }
+    ul > li:hover {
+      background-color: #ff69b4;
+      color: white;
+      cursor: pointer;
+      transform: scale(1.05);
+    }
+    ul > li.selected {
+      background-color: #c8f7d2;
+      color: #176b35;
+      border-color: #39a957;
+      animation: bounce 0.5s ease;
+    }
+    .order-status {
+      min-height: 28px;
+      color: #8a2be2;
+      font-weight: bold;
+    }
+    .score {
+      color: #d63384;
+      font-weight: bold;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.12) rotate(-2deg); }
+    }
+    @keyframes celebrate {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+      100% { transform: translateY(0); }
+    }
+    .celebrate {
+      animation: celebrate 0.6s ease;
+    }
+    button {
+      background-color: #d63384;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      padding: 12px 24px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+    button:hover {
+      background-color: #8a2be2;
+      transform: scale(1.05);
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>My Ice Cream Shop Menu</h1>
+  <p>Welcome to Scoops of Joy!</p>
+  <p class="shop-description">
+    We serve colourful, creamy, and delicious ice cream flavours.
+  </p>
+  <div class="menu-box">
+    <h2>Today's Ice Cream Flavours</h2>
+    <p>Pick a flavour, then place your order!</p>
+    <p class="score">Scoops ordered: <span id="score">0</span></p>
+    <ul>
+      <li tabindex="0">Chocolate Delight</li>
+      <li tabindex="0">Strawberry Swirl</li>
+      <li tabindex="0">Mango Magic - Today's Special</li>
+      <li tabindex="0">Vanilla Dream</li>
+      <li tabindex="0">Blueberry Blast</li>
+    </ul>
+    <p class="order-status" id="order-status" aria-live="polite">Choose your favourite flavour.</p>
+    <button id="order-button">Order Now</button>
+  </div>
+  <script>
+    const flavours = document.querySelectorAll('li');
+    const status = document.getElementById('order-status');
+    const scoreText = document.getElementById('score');
+    const orderButton = document.getElementById('order-button');
+    let selectedFlavour = null;
+    let score = 0;
+
+    function chooseFlavour(flavour) {
+      flavours.forEach(item => item.classList.remove('selected'));
+      flavour.classList.add('selected');
+      selectedFlavour = flavour.textContent.replace(' - Today\'s Special', '');
+      status.textContent = selectedFlavour + ' selected. Ready to order?';
+    }
+
+    flavours.forEach(flavour => {
+      flavour.addEventListener('click', () => chooseFlavour(flavour));
+      flavour.addEventListener('keydown', event => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          chooseFlavour(flavour);
+        }
+      });
+    });
+
+    orderButton.addEventListener('click', () => {
+      if (!selectedFlavour) {
+        status.textContent = 'Pick a flavour first to place your order!';
+        return;
+      }
+      score++;
+      scoreText.textContent = score;
+      status.textContent = 'Yum! Your ' + selectedFlavour + ' is on its way!';
+      orderButton.classList.remove('celebrate');
+      void orderButton.offsetWidth;
+      orderButton.classList.add('celebrate');
+    });
+  </script>
+</body>
+</html>
