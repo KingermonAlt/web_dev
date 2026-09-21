@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<title>IndieBlox</title>
+<meta name="description" content="IndieBlox: play games, build your own, and dress your avatar.">
+<meta name="theme-color" content="#1a1d21">
+<meta name="ib-server" content="">
+<meta name="ib-mode" content="standalone">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Rubik:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="game.css">
+</head>
+<body>
+<div id="app">
+  <header class="topbar">
+    <a class="logo" href="#/home" aria-label="IndieBlox home">
+      <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><polygon points="16,2 28,9 16,16 4,9" fill="#ffd66b"/><polygon points="4,9 16,16 16,30 4,23" fill="#ff9a1f"/><polygon points="28,9 16,16 16,30 28,23" fill="#e8620c"/><polygon points="9,12.5 13,14.8 13,22.6 9,20.3" fill="#fff3d0"/></svg>
+      <span>Indie<b>Blox</b></span>
+    </a>
+    <nav class="topnav" id="topnav">
+      <a href="#/games" data-n="games">Discover</a>
+      <a href="#/avatar" data-n="avatar">Avatar</a>
+      <a href="#/create" data-n="create">Create</a>
+    </nav>
+    <form class="search" id="searchf" role="search">
+      <input id="q" type="search" placeholder="Search games" autocomplete="off" aria-label="Search games">
+    </form>
+    <div class="top-right">
+      <button class="btn sm brand hidden" id="login-btn" data-act="auth-open">Log in</button>
+      <div class="coins" id="coins" title="Your IndieCoins"></div>
+      <button class="me" id="me" aria-label="Profile"></button>
+      <button class="btn sm icon" id="set-btn" data-act="settings" aria-label="Settings" title="Settings"></button>
+    </div>
+  </header>
+  <aside class="sidebar" id="side"></aside>
+  <main id="view"></main>
+</div>
+
+<div id="game" class="hidden">
+  <div id="gview"></div>
+  <div id="hud">
+    <div class="hud-tl"><button class="hud-btn" id="btn-menu" aria-label="Menu"></button><button class="hud-btn hidden" id="btn-build" data-act="bd-toggle" aria-label="Build mode" title="Build (B)"></button><div id="hud-title"></div></div>
+    <div class="hud-stats" id="hud-stats"></div>
+    <div class="hud-board" id="hud-board"></div>
+    <div class="hud-toast" id="hud-toast"></div>
+    <div class="hud-hp hidden" id="hud-hp"><i></i><span></span></div>
+    <div class="hud-chat"><div id="chat-log"></div><input id="chat-in" maxlength="120" placeholder="Press / to chat" autocomplete="off"></div>
+    <div id="dmgflash"></div>
+    <div id="crosshair" class="hidden"></div>
+    <div id="build" class="hidden"></div>
+    <div id="fps" class="hidden"></div>
+    <div id="touch" class="hidden">
+      <div id="joy"><i></i></div>
+      <button class="tbtn" id="btn-jump">Jump</button>
+      <button class="tbtn hidden" id="btn-act">Fire</button>
+      <button class="tbtn hidden" id="btn-lock" aria-label="Shift lock">Lock</button>
+    </div>
+  </div>
+  <div id="gmenu" class="hidden"><div class="box">
+    <h2>Paused</h2><p id="gm-title"></p>
+    <div class="stack">
+      <button class="btn play" data-act="g-resume">Resume</button>
+      <button class="btn" data-act="settings">Settings</button>
+      <button class="btn hidden" data-act="g-players" id="gm-players">Players</button>
+      <button class="btn hidden" data-act="g-p2p" id="gm-p2p">Invite players</button>
+      <button class="btn hidden" data-act="g-savemap" id="gm-savemap">Save a copy of this map</button>
+      <button class="btn hidden" data-act="g-moveset" id="gm-moveset">Change moveset</button>
+      <button class="btn hidden" data-act="g-invite" id="gm-invite">Copy invite link</button>
+      <button class="btn hidden" data-act="g-friends" id="gm-friends">Invite friends</button>
+      <button class="btn" data-act="g-respawn">Reset character</button>
+      <button class="btn" data-act="g-sound" id="gm-sound">Sound on</button>
+      <button class="btn danger" data-act="g-leave">Leave game</button>
+    </div>
+  </div></div>
+  <div id="gresult" class="hidden"><div class="box" id="gres-box"></div></div>
+  <div id="loading" class="hidden"></div>
+</div>
+<div id="modal-root"></div>
+<div id="toast-root" aria-live="polite"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="game.js"></script>
+
+</body>
