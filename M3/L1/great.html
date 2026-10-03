@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Hobby Cards</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- STEP 1 - Bootstrap CSS link -->
+  <link rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+  <style>
+    body {
+      background: linear-gradient(135deg, #fffaf2 0%, #f4f4f4 100%);
+      font-family: Arial, sans-serif;
+      padding: 30px 15px 50px;
+      color: #333;
+    }
+
+    .page-wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .intro {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #FF5A43;
+      margin-bottom: 10px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .intro p {
+      margin: 0 auto;
+      max-width: 680px;
+      color: #666;
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 25px 0 30px;
+    }
+
+    .stat {
+      background: #fff;
+      border: 1px solid rgba(255, 90, 67, 0.2);
+      border-radius: 999px;
+      padding: 8px 18px;
+      color: #FF5A43;
+      font-weight: bold;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.03);
+    }
+
+    .hobby-card {
+      text-align: center;
+      border: 2px solid #FF5A43;
+      border-radius: 16px;
+      padding: 24px 18px 20px;
+      margin-bottom: 20px;
+      background: linear-gradient(180deg, #fffaf0 0%, #fff 100%);
+      box-shadow: 0 4px 12px rgba(255, 90, 67, 0.12);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hobby-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto auto 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #FF5A43, #ff9c8a);
+    }
+
+    .hobby-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 18px rgba(255, 90, 67, 0.18);
+    }
+
+    .emoji {
+      display: inline-block;
+      font-size: 2rem;
+      margin-bottom: 10px;
+      line-height: 1;
+    }
+
+    .hobby-card h3 {
+      color: #FF5A43;
+      margin-bottom: 12px;
+      font-weight: bold;
+    }
+
+    .hobby-card p {
+      margin: 0;
+      color: #444;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-wrap">
+    <div class="intro">
+      <h1>My Hobby Cards</h1>
+      <p>Here are the activities that keep me active, creative, and happy every week.</p>
+    </div>
+
+    <div class="stats">
+      <span class="stat">Creative</span>
+      <span class="stat">Active</span>
+      <span class="stat">Fun</span>
+      <span class="stat">Relaxing</span>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="hobby-card">
+            <div class="emoji">🎨</div>
+            <h3>Drawing</h3>
+            <p>I love sketching animals and comic characters.</p>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="hobby-card">
+            <div class="emoji">⚽</div>
+            <h3>Football</h3>
+            <p>I play football every evening with my friends.</p>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="hobby-card">
+            <div class="emoji">📚</div>
+            <h3>Reading</h3>
+            <p>My favourite books are adventure stories.</p>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="hobby-card">
+            <div class="emoji">🏊</div>
+            <h3>Swimming</h3>
+            <p>I enjoy swimming to stay active and relaxed.</p>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="hobby-card">
+            <div class="emoji">📷</div>
+            <h3>Photography</h3>
+            <p>I love taking pictures of landscapes and sunsets.</p>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="hobby-card">
+            <div class="emoji">🎵</div>
+            <h3>Music</h3>
+            <p>I listen to music and sometimes play songs by ear.</p>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="hobby-card">
+            <div class="emoji">🎮</div>
+            <h3>Gaming</h3>
+            <p>I enjoy strategy games and online challenges with friends.</p>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="hobby-card">
+            <div class="emoji">🚴</div>
+            <h3>Cycling</h3>
+            <p>Riding around the city helps me stay fit and energized.</p>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="hobby-card">
+            <div class="emoji">🍳</div>
+            <h3>Cooking</h3>
+            <p>I like trying new recipes and making tasty homemade meals.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 5 - Bootstrap JS script -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
+  </script>
+
+</body>
+</html>
