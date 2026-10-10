@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css">
+  <style>
+    .hobby-card {
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      animation: fade-in 0.6s ease both;
+    }
+
+    .hobby-card:hover {
+      transform: translateY(-6px) scale(1.01);
+      box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.25);
+    }
+
+    @keyframes fade-in {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hobby-card { animation: none; transition: none; }
+      .hobby-card:hover { transform: none; }
+    }
+  </style>
+  <title>My Hobby Hub</title>
+</head>
+<body>
+
+  <!-- container-fluid: stretches to fill the full width of the screen -->
+  <div class="container-fluid bg-primary text-white p-4">
+    <h1>My Hobby Hub</h1>
+    <p>A page about the things I love to do!</p>
+  </div>
+
+  <!-- container: keeps content centred and neat on the page -->
+  <div class="container p-4">
+
+    <!-- bg-success: green background, white text -->
+    <div class="hobby-card bg-success text-white border border-dark p-3 my-3">
+      <h2>Reading</h2>
+      <p>I love reading adventure stories and discovering new facts every day.</p>
+    </div>
+
+    <!-- bg-warning: yellow background with a dark border -->
+    <div class="hobby-card bg-warning text-dark border border-dark p-3 my-3">
+      <h2>Drawing</h2>
+      <p>I enjoy drawing animals and making my own comic strips.</p>
+    </div>
+
+    <!-- bg-info: teal background with a dark border -->
+    <div class="hobby-card bg-info text-dark border border-dark p-3 my-3">
+      <h2>Coding</h2>
+      <p>Building websites with HTML, CSS, and Bootstrap is my favourite thing to learn!</p>
+    </div>
+
+    <!-- bg-danger: red background, white text -->
+    <div class="hobby-card bg-danger text-white border border-dark p-3 my-3">
+      <h2>Sports</h2>
+      <p>I play cricket and love going swimming at the weekends.</p>
+    </div>
+
+    <!-- bg-light: light background with a visible dark border -->
+    <div class="hobby-card bg-light text-dark border border-dark p-3 my-3">
+      <h2>Music</h2>
+      <p>I am learning to play the keyboard and enjoy listening to pop music.</p>
+    </div>
+
+  </div>
+
+  <!-- container-fluid footer: full-width dark bar at the bottom -->
+  <div class="container-fluid bg-dark text-white p-3">
+    <p>Made with Bootstrap — My Hobby Hub</p>
+  </div>
+
+</body>
+</html>
