@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>My Planet Explorer</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <style>
+    body { background-color: #f0f4ff; }
+    .navbar { background-color: #1a237e; }
+    .navbar-brand, .nav-link { color: #fff !important; }
+    .section-title { color: #1a237e; margin: 20px 0 10px; }
+  </style>
+</head>
+
+<body>
+  <!-- TOPIC 3: NAVIGATION BAR -->
+   <!-- TODO: Add the navbar class and also add the navbar-brand class to the first link and the navbar-nav class to the ul element. Add the nav-item class to each li element and the nav-link class to each a element. -->
+  <nav class="navbar">
+    <a class="navbar-brand" href="#">Planet Explorer</a>
+
+    <!-- TODO: Add the navbar-nav class to the ul element. Add the nav-item class to each li element and the nav-link class to each a element. -->
+    <ul class="navbar-nav">
+      <!-- TODO: Add the nav-item class to each li element and the nav-link class to each a element. -->
+      <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">Planets</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">Stars</a></li>
+    </ul>
+  </nav>
+
+  <div class="container mt-4">
+    <!-- TOPIC 1: SPINNERS -->
+    <h4 class="section-title">Scanning the Galaxy...</h4>
+    <div class="spinner-border text-primary" role="status"></div>
+    <!-- TODO: Add a spinner with the class "spinner-border" and the different color classes -->
+    <div class="spinner-border text-success" role="status"></div>
+    <div class="spinner-border text-danger" role="status"></div>
+
+    <!-- TOPIC 2: CARDS -->
+    <h4 class="section-title">Featured Planets</h4>
+    <div class="row">
+      
+      <div class="col-md-4">
+
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Earth</h5>
+            <p class="card-text">Our home planet — the only one known to have life!</p>
+            <a href="#" class="btn btn-primary">Explore</a>
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="col-md-4">
+        <!-- TODO: Add the card class to the div element. Add the card-body class to the inner div element. -->
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Mars</h5>
+            <p class="card-text">The red planet — one day humans may live here!</p>
+            <a href="#" class="btn btn-danger">Explore</a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- TODO: Add the card class to the div element. Add the card-body class to the inner div element. -->
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Jupiter</h5>
+            <p class="card-text">The biggest planet — its giant storm never stops!</p>
+            <a href="#" class="btn btn-warning">Explore</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- TOPIC 4: PAGINATION -->
+    <h4 class="section-title">Browse More Planets</h4>
+    <ul class="pagination">
+      <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+      <!-- TODO: Add the page-item class to each li element and the page-link class to each a element. -->
+      <li class="page-item"><a class="page-link" href="#">1</a></li>
+      <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item"><a class="page-link" href="#">Next</a></li>
+    </ul>
+  </div>
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>
