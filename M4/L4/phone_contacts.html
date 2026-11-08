@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Phone Contact</title>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    rel="stylesheet">
+  <style>
+    :root { --accent: #ff5a43; --ink: #29263d; }
+    body {
+      min-height: 100vh;
+      color: var(--ink);
+      background: linear-gradient(135deg, #fff2ec, #f1edff, #e8f8ff, #fff2ec);
+      background-size: 300% 300%;
+      animation: backgroundDrift 14s ease infinite;
+    }
+    h1 {
+      display: inline-block;
+      color: var(--accent);
+      animation: titleIn .8s cubic-bezier(.2,.8,.2,1) both;
+      transition: transform .25s ease, color .25s ease;
+    }
+    h1:hover { color: #d83b68; transform: translateY(-3px) rotate(-1deg); }
+    .container > p { animation: fadeUp .7s .15s both; }
+    .card-label { font-size: 11px; color: #999; text-transform: uppercase; letter-spacing: .08em; }
+    pre { font-size: 13px; color: #333; }
+    .contact-card {
+      overflow: hidden;
+      border: 0;
+      border-radius: 20px;
+      background: rgba(255,255,255,.9);
+      box-shadow: 0 14px 35px rgba(62, 49, 91, .12) !important;
+      animation: cardIn .75s .25s cubic-bezier(.2,.8,.2,1) both;
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+    .contact-card:hover {
+      transform: translateY(-7px) scale(1.015);
+      box-shadow: 0 22px 42px rgba(62, 49, 91, .2) !important;
+    }
+    .contact-card .card-title { transition: letter-spacing .25s ease; }
+    .contact-card:hover .card-title { letter-spacing: .04em; }
+    .list-group-item {
+      border-color: #f0edf4;
+      transition: background-color .22s ease, transform .22s ease, padding .22s ease;
+      animation: fadeUp .5s both;
+    }
+    .list-group-item:nth-child(2) { animation-delay: .35s; }
+    .list-group-item:nth-child(3) { animation-delay: .45s; }
+    .list-group-item:nth-child(4) { animation-delay: .55s; }
+    .list-group-item:hover, .list-group-item:focus-visible, .list-group-item.is-active {
+      z-index: 1;
+      background: #fff5f1;
+      transform: translateX(6px);
+      padding-left: 1.25rem;
+      outline: none;
+    }
+    .list-group-item strong { transition: color .2s ease; }
+    .list-group-item:hover strong, .list-group-item.is-active strong { color: var(--accent); }
+    @keyframes backgroundDrift { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+    @keyframes titleIn { from { opacity: 0; transform: translateY(-14px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes cardIn { from { opacity: 0; transform: translateY(18px) scale(.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body class="py-4">
+
+  <div class="container">
+
+    <h1 class="mb-1">My Phone Contact</h1>
+    <p class="text-muted mb-4">
+      Introduction to Objects in JavaScript
+    </p>
+
+    <!-- Contact Card -->
+    <div class="card contact-card shadow-sm mb-3" style="max-width:400px;">
+      <div class="card-body">
+        <h5 class="card-title" style="color:#FF5A43;">Contact Details</h5>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item" tabindex="0">
+            <span class="card-label d-block">Name</span>
+            <strong id="name">—</strong>
+          </li>
+          <li class="list-group-item" tabindex="0">
+            <span class="card-label d-block">Phone Number</span>
+            <strong id="phone_number">—</strong>
+          </li>
+          <li class="list-group-item" tabindex="0">
+            <span class="card-label d-block">School</span>
+            <strong id="school">—</strong>
+          </li>
+          <li class="list-group-item" tabindex="0">
+            <span class="card-label d-block">Country    </span>
+            <strong id="country">—</strong>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+  </div><!-- /container -->
+
+  <script>
+
+    // Step 1 — Create the contact object
+    var myContact = {
+      name:   "Anani McPherson Aneozeng",
+
+      phone_number:  "(234) 912 828 3894",
+      school: "The Regent Secondary School Abuja",
+      country: "Nigeria"
+    };
+
+    var nameEle  = document.getElementById("name");
+    nameEle.textContent  = myContact.name;
+
+    ["phone_number", "school", "country"].forEach(function (field) {
+      document.getElementById(field).textContent = myContact[field];
+    });
+
+    document.querySelectorAll(".list-group-item").forEach(function (item) {
+      item.addEventListener("click", function () {
+        item.classList.toggle("is-active");
+      });
+      item.addEventListener("keydown", function (event) {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          item.classList.toggle("is-active");
+        }
+      });
+    });
+
+
+  </script>
+
+</body>
+</html>
