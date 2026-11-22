@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Game Profile</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --background: aliceblue;
+      --foreground: #111;
+      --accent: navy;
+      --button-text: white;
+    }
+    body.dark-theme {
+      color-scheme: dark;
+      --background: #1e1e2e;
+      --foreground: #f2f2f2;
+      --accent: #9ab8ff;
+      --button-text: #111;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background: var(--background);
+      color: var(--foreground);
+      text-align: center;
+      padding: 30px;
+      transition: background-color 0.2s, color 0.2s;
+    }
+    h1 { color: var(--accent); }
+    button {
+      background: var(--accent);
+      color: var(--button-text);
+      padding: 10px 25px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      margin: 4px;
+    }
+    .profile-item {
+      border: 1px solid var(--accent);
+      width: 280px;
+      margin: 6px auto;
+      padding: 8px 12px;
+      text-align: left;
+      border-radius: 6px;
+    }
+    [hidden] { display: none !important; }
+  </style>
+</head>
+<body>
+
+  <h1>My Game Profile</h1>
+  <button id="profileToggle" onclick="toggleProfile()" aria-expanded="false">Show Profile</button>
+  <button id="themeToggle" onclick="toggleTheme()" aria-pressed="false">Switch to Dark Theme</button>
+
+  <section id="profile" hidden aria-label="Game profile">
+    <div class="profile-item">Name: <span id="name"></span></div>
+    <div class="profile-item">Score: <span id="score"></span></div>
+    <div class="profile-item">Top Score: <span id="topScore"></span></div>
+    <div class="profile-item">Rank: <span id="rank"></span></div>
+    <div class="profile-item">Stars: <span id="stars"></span></div>
+    <div class="profile-item">Team Name: <span id="team"></span></div>
+  </section>
+
+  <script>
+
+    function toggleProfile() {
+      const profile = document.getElementById("profile");
+      const button = document.getElementById("profileToggle");
+      const isVisible = profile.hidden;
+
+      if (isVisible) showProfile();
+      profile.hidden = !isVisible;
+      button.textContent = isVisible ? "Hide Profile" : "Show Profile";
+      button.setAttribute("aria-expanded", String(isVisible));
+    }
+
+    function toggleTheme() {
+      const isDark = document.body.classList.toggle("dark-theme");
+      const button = document.getElementById("themeToggle");
+      button.textContent = isDark ? "Switch to Light Theme" : "Switch to Dark Theme";
+      button.setAttribute("aria-pressed", String(isDark));
+    }
+
+    function showProfile() {
+
+      // Variables
+      let name      = "Mcpherson";
+      let myScore   = 75;
+      let highScore = 100;
+      let team = "Team Toast";
+
+      // TODO: Add comparison operator to check if myScore is greater than highScore.
+      let isTopScore = (myScore > highScore);
+
+      // if / else — Rank
+      // TODO:
+      // Use if / else to assign a rank based on myScore. 
+      // If myScore is 80 or higher, rank is "Gold". 
+      // If myScore is 50 or higher, rank is "Silver". 
+      // Otherwise, rank is "Bronze".
+      let rank;
+
+      if (myScore >= 80) {
+        rank = "Gold";
+      } else if (myScore >= 50) {
+        rank = "Silver";
+      } else {
+        rank = "Bronze";
+      }
+
+
+
+      // TODO: Use a while loop to create a string of 5 stars. Each star is represented by an asterisk (*).
+      let stars = "";
+      let count = 0;
+      while (count < 5) {
+        stars += "*";
+        count++;
+      }
+
+      // Display name, score, topScore, rank, stars, and team in the HTML page.
+      document.getElementById("name").innerHTML     = name;
+      document.getElementById("score").innerHTML    = myScore;
+      document.getElementById("topScore").innerHTML = highScore;
+      document.getElementById("rank").innerHTML     = rank;
+      document.getElementById("stars").innerHTML    = stars;
+      document.getElementById("team").innerHTML     = team;
+
+    }
+
+  </script>
+</body>
+</html>
