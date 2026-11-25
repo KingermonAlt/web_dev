@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Birthday Countdown Checker</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: linear-gradient(to right, #ffecd2, #fcb69f); text-align: center; }
+    .card { width: 90%; max-width: 480px; background: white; border: 4px solid #ff6f91; border-radius: 20px; margin: 30px auto; padding: 20px; }
+    h1 { color: #ff477e; }
+    button { background: #ff477e; color: white; border: none; border-radius: 25px; padding: 12px 25px; font-size: 18px; cursor: pointer; }
+    .box { background: #fff0f5; border: 2px dashed #ff6f91; border-radius: 12px; padding: 10px; margin-top: 12px; text-align: left; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>&#127874; My Birthday Countdown Checker</h1>
+    <button onclick="checkCountdown()">Check Countdown</button>
+    <div class="box"><h3>Missing Details</h3><p id="missing">(Part 1 fills this)</p></div>
+    <div class="box"><h3>Greeting</h3><p id="greeting">(Part 2 fills this)</p></div>
+    <div class="box"><h3>Days Left</h3><p id="message">(Part 3 fills this)</p></div>
+    <div class="box"><h3>Countdown</h3><p id="countdown">(Part 4 fills this)</p></div>
+  </div>
+  <script>
+    function checkCountdown() {
+      let friendName = "Zara";   // (given)
+      let daysLeft = 3;          // (given) try 0, 1 and 3
+
+      // ---------- PART 1: missing details ----------
+      // YOUR CODE HERE
+      // Make giftIdea = null (on purpose). Make cakeFlavour with NO value (undefined).
+      // Join both into one text with + and show it in the "missing" box with getElementById.
+      let giftIdea = "replace me";
+      let cakeFlavour = "replace me";
+
+      // ---------- PART 2: greeting by time of day ----------
+      // YOUR CODE HERE
+      // Get the hour with new Date().getHours(). Use if / else if / else:
+      // before 12 = morning, before 17 = afternoon, otherwise evening.
+      // Join the greeting and friendName with +. Show it in the "greeting" box.
+      let hour = 0;   // placeholder: replace this line with your own
+
+      // ---------- PART 3: the days-left message ----------
+      // YOUR CODE HERE
+      // Use == and if / else if / else:
+      // daysLeft == 0 -> "Today is the party!", daysLeft == 1 -> "Tomorrow is the party!",
+      // otherwise -> the number of days to go (join with +). Show it in the "message" box.
+
+      // ---------- PART 4: the countdown ----------
+      // YOUR CODE HERE
+      // Use a while loop that starts at daysLeft and counts down to 1, adding a line
+      // like "Days left: 3" each time (use <br> for a new line). Then add "Party time!".
+      // Show it in the "countdown" box.
+    }
+  </script>
+</body>
+</html>
